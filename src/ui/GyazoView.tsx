@@ -31,13 +31,13 @@ export class GyazoView extends ItemView {
     async onOpen(): Promise<void> {
         this.contentEl.empty();
         this.contentEl.addClass('gyazo-view-container');
-        
+
         const container = this.contentEl.createDiv({ cls: 'gyazo-react-container' });
         this.root = createRoot(container);
-        
+
         this.loading = true;
         this.renderComponent();
-        
+
         try {
             this.images = await this.plugin.getGyazoImages();
             this.loading = false;
@@ -47,7 +47,7 @@ export class GyazoView extends ItemView {
             this.error = 'Error loading images';
             console.error('Failed to load Gyazo images:', err);
         }
-        
+
         this.renderComponent();
     }
 
@@ -59,8 +59,8 @@ export class GyazoView extends ItemView {
 
     private renderComponent(): void {
         this.reactComponent = (
-            <GyazoGallery 
-                images={this.images} 
+            <GyazoGallery
+                images={this.images}
                 loading={this.loading}
                 error={this.error}
                 translations={this.plugin.getTranslation()}
@@ -69,7 +69,7 @@ export class GyazoView extends ItemView {
                 onContextMenu={this.handleContextMenu.bind(this)}
             />
         );
-        
+
         this.root.render(this.reactComponent);
     }
 
@@ -82,10 +82,10 @@ export class GyazoView extends ItemView {
 
     private handleContextMenu(event: React.MouseEvent, image: GyazoImage): void {
         event.preventDefault();
-        
+
         const menu = new this.plugin.Menu();
         const t = this.plugin.getTranslation();
-        
+
         menu.addItem((item: MenuItem) => {
             item.setTitle(t.copyUrl)
                 .setIcon('link')
@@ -93,7 +93,7 @@ export class GyazoView extends ItemView {
                     navigator.clipboard.writeText(image.permalink_url);
                 });
         });
-        
+
         menu.addItem((item: MenuItem) => {
             item.setTitle(t.openInBrowser)
                 .setIcon('external-link')
@@ -101,10 +101,10 @@ export class GyazoView extends ItemView {
                     window.open(image.permalink_url, '_blank');
                 });
         });
-        
+
         if (image.type === 'gif' || image.type === 'mp4') {
             menu.addSeparator();
-            
+
             menu.addItem((item: MenuItem) => {
                 item.setTitle(t.copyMarkdownGif)
                     .setIcon('clipboard-copy')
@@ -113,7 +113,7 @@ export class GyazoView extends ItemView {
                         navigator.clipboard.writeText(markdown);
                     });
             });
-            
+
             menu.addItem((item: MenuItem) => {
                 item.setTitle(t.copyMarkdownMp4)
                     .setIcon('clipboard-copy')
@@ -123,7 +123,7 @@ export class GyazoView extends ItemView {
                     });
             });
         }
-        
+
         menu.showAtMouseEvent(event.nativeEvent);
     }
 
@@ -146,40 +146,61 @@ interface GyazoGalleryProps {
     onContextMenu: (event: React.MouseEvent, image: GyazoImage) => void;
 }
 
-const GyazoGallery: React.FC<GyazoGalleryProps> = ({ 
-    images, 
-    loading, 
-    error, 
-    translations, 
-    isPro, 
-    onImageClick, 
-    onContextMenu 
+const GyazoGallery: React.FC<GyazoGalleryProps> = ({
+    images,
+    loading,
+    error,
+    translations,
+    isPro,
+    onImageClick,
+    onContextMenu
 }) => {
     const [showProModal, setShowProModal] = React.useState(false);
-    
+
     if (loading) {
         return <div className="gyazo-loading">{translations.loadingImages}</div>;
     }
-    
+
     if (error) {
         return <div className="gyazo-error">{translations.errorLoadingImages}</div>;
     }
-    
-    if (images.length === 0) {
+
+    if (!images.length) {
+        if (!onImageClick && !isPro) {
+            return (
+                <div className="gyazo-login-container">
+                    <h2>{translations.loginRequired}</h2>
+                    <p>{translations.loginRequiredDesc}</p>
+                    <button
+                        className="gyazo-login-button"
+                        onClick={() => {
+                            const plugin = (window as any).gyazoPlugin;
+                            if (plugin && plugin.api) {
+                                const authUrl = plugin.api.generateAuthorizeUrl();
+                                window.open(authUrl, '_blank');
+                            }
+                        }}
+                    >
+                        {translations.loginButton}
+                    </button>
+                </div>
+            );
+        }
+
         return <div className="gyazo-empty">{translations.noImages}</div>;
     }
-    
+
     const freeLimit = 10;
     const displayImages = images;
-    
+
     return (
         <div className="gyazo-gallery">
             <div className="gyazo-grid">
                 {displayImages.map((image, index) => {
                     const isLocked = !isPro && index >= freeLimit;
-                    
+
                     return (
-                        <div 
+                        <div
                             key={image.image_id}
                             className={`gyazo-card ${isLocked ? 'gyazo-locked' : ''}`}
                             onClick={() => {
@@ -209,7 +230,7 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
                                 <div className="gyazo-copy-button" onClick={(e) => {
                                     e.stopPropagation();
                                     if (!isLocked) {
-                                        const markdown = image.type === 'mp4' 
+                                        const markdown = image.type === 'mp4'
                                             ? `<video src="${image.url}" controls></video>`
                                             : `![](${image.url})`;
                                         navigator.clipboard.writeText(markdown);
@@ -226,19 +247,19 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
                     );
                 })}
             </div>
-            
+
             {showProModal && (
                 <div className="gyazo-pro-modal">
                     <div className="gyazo-pro-modal-content">
                         <h2>{translations.upgradeToProTitle}</h2>
                         <p>{translations.upgradeToProDesc}</p>
-                        <button 
+                        <button
                             className="gyazo-pro-button"
                             onClick={() => window.open('https://gyazo.com/pro', '_blank')}
                         >
                             {translations.upgradeToProButton}
                         </button>
-                        <button 
+                        <button
                             className="gyazo-close-button"
                             onClick={() => setShowProModal(false)}
                         >

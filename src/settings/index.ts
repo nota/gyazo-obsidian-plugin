@@ -1,6 +1,7 @@
-import { App, PluginSettingTab, Setting } from 'obsidian';
+import { App, Notice, PluginSettingTab, Setting } from 'obsidian';
 import GyazoPlugin from '../../main';
 import { translations } from '../i18n/index';
+import { GyazoApi } from '../api/index';
 
 export class GyazoSettingTab extends PluginSettingTab {
     plugin: GyazoPlugin;
@@ -17,16 +18,42 @@ export class GyazoSettingTab extends PluginSettingTab {
         containerEl.empty();
         containerEl.createEl('h2', { text: t.settingsTitle });
 
-        new Setting(containerEl)
+        const tokenSetting = new Setting(containerEl)
             .setName(t.accessTokenLabel)
-            .setDesc(t.accessTokenDesc)
-            .addText(text => text
+            .setDesc(t.accessTokenDesc);
+            
+        if (this.plugin.settings.accessToken) {
+            const maskedToken = this.plugin.settings.accessToken.substring(0, 4) + 
+                               '...' + 
+                               this.plugin.settings.accessToken.substring(
+                                   this.plugin.settings.accessToken.length - 4
+                               );
+                               
+            tokenSetting.addText(text => text
+                .setValue(maskedToken)
+                .setDisabled(true)
+            );
+            
+            tokenSetting.addButton(button => button
+                .setButtonText(t.revokeToken)
+                .setTooltip(t.revokeTokenDesc)
+                .onClick(async () => {
+                    this.plugin.settings.accessToken = '';
+                    this.plugin.api = new GyazoApi('');
+                    await this.plugin.saveSettings();
+                    new Notice(t.tokenRevoked);
+                    this.display(); // Refresh the settings view
+                })
+            );
+        } else {
+            tokenSetting.addText(text => text
                 .setPlaceholder('Enter your Gyazo access token')
-                .setValue(this.plugin.settings.accessToken)
+                .setValue('')
                 .onChange(async (value) => {
                     this.plugin.settings.accessToken = value;
                     await this.plugin.saveSettings();
                 }));
+        }
 
         new Setting(containerEl)
             .setName(t.languageLabel)

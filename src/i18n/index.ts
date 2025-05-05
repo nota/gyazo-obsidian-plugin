@@ -1,43 +1,84 @@
-import axios from 'axios';
-import { GyazoImage } from '../types/index';
-
-export class GyazoApi {
-    private accessToken: string;
-
-    constructor(accessToken: string) {
-        this.accessToken = accessToken;
-    }
-
-    async getImages(limit = 100): Promise<GyazoImage[]> {
-        try {
-            const response = await axios.get('https://api.gyazo.com/api/images', {
-                params: {
-                    access_token: this.accessToken,
-                    per_page: limit
-                }
-            });
-            
-            return response.data.map((image: any) => ({
-                image_id: image.image_id,
-                permalink_url: image.permalink_url,
-                thumb_url: image.thumb_url,
-                url: image.url,
-                type: this.determineType(image),
-                created_at: image.created_at,
-                metadata: image.metadata || {}
-            }));
-        } catch (error) {
-            console.error('Error fetching Gyazo images:', error);
-            throw error;
-        }
-    }
-
-    private determineType(image: any): 'png' | 'gif' | 'mp4' {
-        if (image.type === 'gif' || (image.url && image.url.endsWith('.gif'))) {
-            return 'gif';
-        } else if (image.type === 'mp4' || (image.url && image.url.endsWith('.mp4'))) {
-            return 'mp4';
-        }
-        return 'png';
-    }
+export interface Translations {
+  ribbonTooltip: string;
+  settingsTitle: string;
+  accessTokenLabel: string;
+  accessTokenDesc: string;
+  languageLabel: string;
+  languageDesc: string;
+  isPro: string;
+  isProDesc: string;
+  save: string;
+  copyUrl: string;
+  openInBrowser: string;
+  copyMarkdownGif: string;
+  copyMarkdownMp4: string;
+  upgradeToProTitle: string;
+  upgradeToProDesc: string;
+  upgradeToProButton: string;
+  noImages: string;
+  loadingImages: string;
+  errorLoadingImages: string;
+  loginRequired: string;
+  loginRequiredDesc: string;
+  loginButton: string;
+  revokeToken: string;
+  revokeTokenDesc: string;
+  tokenRevoked: string;
 }
+
+export const translations: Record<'en' | 'ja', Translations> = {
+  en: {
+      ribbonTooltip: 'Gyazo Captures',
+      settingsTitle: 'Gyazo Plugin Settings',
+      accessTokenLabel: 'Access Token',
+      accessTokenDesc: 'Enter your Gyazo API access token',
+      languageLabel: 'Language',
+      languageDesc: 'Select your preferred language',
+      isPro: 'Gyazo Pro',
+      isProDesc: 'Enable if you have a Gyazo Pro account',
+      save: 'Save',
+      copyUrl: 'Copy URL',
+      openInBrowser: 'Open in Browser',
+      copyMarkdownGif: 'Copy GIF Markdown',
+      copyMarkdownMp4: 'Copy MP4 Markdown',
+      upgradeToProTitle: 'Upgrade to Gyazo Pro',
+      upgradeToProDesc: 'Upgrade to Gyazo Pro to access all your captures',
+      upgradeToProButton: 'Upgrade Now',
+      noImages: 'No captures found',
+      loadingImages: 'Loading captures...',
+      errorLoadingImages: 'Error loading captures',
+      loginRequired: 'Gyazo Account Required',
+      loginRequiredDesc: 'Please sign up or log in to continue using Gyazo captures',
+      loginButton: 'Sign up / Log in',
+      revokeToken: 'Revoke Access',
+      revokeTokenDesc: 'Revoke Gyazo access token',
+      tokenRevoked: 'Access token has been revoked'
+  },
+  ja: {
+      ribbonTooltip: 'Gyazoキャプチャ',
+      settingsTitle: 'Gyazoプラグイン設定',
+      accessTokenLabel: 'アクセストークン',
+      accessTokenDesc: 'Gyazo APIのアクセストークンを入力してください',
+      languageLabel: '言語',
+      languageDesc: '表示言語を選択してください',
+      isPro: 'Gyazo Pro',
+      isProDesc: 'Gyazo Proアカウントをお持ちの場合は有効にしてください',
+      save: '保存',
+      copyUrl: 'URLをコピー',
+      openInBrowser: 'ブラウザで開く',
+      copyMarkdownGif: 'GIF形式でマークダウンをコピー',
+      copyMarkdownMp4: 'MP4形式でマークダウンをコピー',
+      upgradeToProTitle: 'Gyazo Proにアップグレード',
+      upgradeToProDesc: 'Gyazo Proにアップグレードして全てのキャプチャにアクセスしましょう',
+      upgradeToProButton: '今すぐアップグレード',
+      noImages: 'キャプチャが見つかりません',
+      loadingImages: 'キャプチャを読み込み中...',
+      errorLoadingImages: 'キャプチャの読み込みに失敗しました',
+      loginRequired: 'Gyazoアカウントが必要です',
+      loginRequiredDesc: 'Gyazoキャプチャを利用するにはサインアップまたはログインしてください',
+      loginButton: 'サインアップ / ログイン',
+      revokeToken: 'アクセス取り消し',
+      revokeTokenDesc: 'Gyazoアクセストークンを取り消す',
+      tokenRevoked: 'アクセストークンが取り消されました'
+  }
+};
