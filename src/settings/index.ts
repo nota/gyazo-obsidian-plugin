@@ -53,6 +53,14 @@ export class GyazoSettingTab extends PluginSettingTab {
                     this.plugin.settings.accessToken = value;
                     await this.plugin.saveSettings();
                 }));
+                
+            tokenSetting.addButton(button => button
+                .setButtonText(t.openApiDashboard)
+                .setTooltip(t.openApiDashboardDesc)
+                .onClick(() => {
+                    window.open('https://gyazo.com/oauth/applications', '_blank');
+                })
+            );
         }
 
         new Setting(containerEl)
