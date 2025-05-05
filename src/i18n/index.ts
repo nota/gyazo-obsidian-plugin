@@ -3,6 +3,8 @@ export interface Translations {
   settingsTitle: string;
   accessTokenLabel: string;
   accessTokenDesc: string;
+  openApiDashboard: string;
+  openApiDashboardDesc: string;
   languageLabel: string;
   languageDesc: string;
   isPro: string;
@@ -32,6 +34,8 @@ export const translations: Record<'en' | 'ja', Translations> = {
       settingsTitle: 'Gyazo Plugin Settings',
       accessTokenLabel: 'Access Token',
       accessTokenDesc: 'Enter your Gyazo API access token',
+      openApiDashboard: 'Open API Dashboard',
+      openApiDashboardDesc: 'Open Gyazo OAuth applications page to get your access token',
       languageLabel: 'Language',
       languageDesc: 'Select your preferred language',
       isPro: 'Gyazo Pro',
@@ -59,6 +63,8 @@ export const translations: Record<'en' | 'ja', Translations> = {
       settingsTitle: 'Gyazoプラグイン設定',
       accessTokenLabel: 'アクセストークン',
       accessTokenDesc: 'Gyazo APIのアクセストークンを入力してください',
+      openApiDashboard: 'APIダッシュボードを開く',
+      openApiDashboardDesc: 'Gyazo OAuthアプリケーションページを開いてアクセストークンを取得する',
       languageLabel: '言語',
       languageDesc: '表示言語を選択してください',
       isPro: 'Gyazo Pro',
