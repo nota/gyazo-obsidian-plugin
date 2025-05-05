@@ -1,11 +1,11 @@
 {
-	"id": "sample-plugin",
-	"name": "Sample Plugin",
+	"id": "obsidian-gyazo-plugin",
+	"name": "Gyazo Plugin",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
-	"description": "Demonstrates some of the capabilities of the Obsidian API.",
-	"author": "Obsidian",
-	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
+	"description": "Displays and embeds Gyazo captures in Obsidian.",
+	"author": "Devin AI",
+	"authorUrl": "https://github.com",
+	"fundingUrl": "https://gyazo.com/pro",
 	"isDesktopOnly": false
 }

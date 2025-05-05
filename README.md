@@ -1,30 +1,55 @@
-# Obsidian Sample Plugin
+# Obsidian Gyazo Plugin
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+This plugin integrates Gyazo with Obsidian, allowing you to view and embed your Gyazo captures directly in your notes.
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+## Features
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- View your Gyazo captures in a dedicated sidebar
+- Embed images and videos in your notes with a single click
+- Drag and drop captures into your notes
+- Copy markdown for images and videos
+- Right-click context menu with additional options
+- Support for both free and Pro Gyazo accounts
+- Internationalization support (English and Japanese)
 
-## First time developing plugins?
+## Installation
 
-Quick starting guide for new plugin devs:
+1. Download the latest release from the Releases section
+2. Extract the zip file in your Obsidian vault's `.obsidian/plugins/` directory
+3. Enable the plugin in Obsidian settings
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+## Usage
+
+### Setup
+
+1. Get your Gyazo API access token from [Gyazo API](https://gyazo.com/api)
+2. Open the plugin settings and enter your access token
+3. Select your preferred language (English or Japanese)
+4. If you have a Gyazo Pro account, enable the Pro option
+
+### Viewing Captures
+
+1. Click the camera icon in the left ribbon to open the Gyazo captures view
+2. Your captures will be displayed as a grid of thumbnails in the right sidebar
+
+### Embedding Captures
+
+- **Click**: Click on a capture to embed it at the current cursor position
+- **Drag & Drop**: Drag a capture from the sidebar and drop it into your note
+- **Hover & Copy**: Hover over a capture to reveal a copy button that copies the markdown
+
+### Context Menu
+
+Right-click on a capture to access additional options:
+
+- Copy URL
+- Open in Browser
+- For videos: Copy GIF Markdown or MP4 Markdown
+
+### Free vs Pro
+
+- Free users can interact with their 10 most recent captures
+- Pro users can access all captures (up to 100)
 
 ## Releasing new releases
 
