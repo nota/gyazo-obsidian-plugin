@@ -12,7 +12,7 @@ export class GyazoView extends ItemView {
 	private reactComponent: React.ReactNode;
 	private root: any;
 	private images: GyazoImage[] = [];
-	private loading: boolean = true;
+	private loading = true;
 	private error: string | null = null;
 
 	constructor(leaf: WorkspaceLeaf, plugin: GyazoPlugin) {
