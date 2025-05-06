@@ -78,7 +78,45 @@ export class GyazoView extends ItemView {
 		const activeEditor = this.plugin.getActiveEditor();
 		if (activeEditor) {
 			this.embedImage(activeEditor, image);
+			// 成功メッセージを表示
+			this.showToast(
+				this.plugin.getTranslation().imageCopiedToEditor ||
+					"Image inserted into editor"
+			);
+		} else {
+			// エディタがない場合はクリップボードにコピー
+			const markdown =
+				image.type === "mp4"
+					? `<video src="${image.url}" controls></video>`
+					: `![](${image.url})`;
+			navigator.clipboard.writeText(markdown);
+			// コピー成功メッセージを表示
+			this.showToast(
+				this.plugin.getTranslation().imageCopiedToClipboard ||
+					"Image copied to clipboard"
+			);
 		}
+	}
+
+	private showToast(message: string): void {
+		// トースト要素を作成
+		const toast = document.createElement("div");
+		toast.className = "gyazo-toast";
+		toast.textContent = message;
+		document.body.appendChild(toast);
+
+		// 表示アニメーション
+		setTimeout(() => {
+			toast.classList.add("show");
+		}, 10);
+
+		// 一定時間後に消す
+		setTimeout(() => {
+			toast.classList.remove("show");
+			setTimeout(() => {
+				document.body.removeChild(toast);
+			}, 300);
+		}, 2000);
 	}
 
 	private handleContextMenu(
@@ -163,6 +201,25 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 	onContextMenu,
 }) => {
 	const [showProModal, setShowProModal] = React.useState(false);
+	// クリックされた画像IDを管理する状態
+	const [clickedId, setClickedId] = React.useState<string | null>(null);
+
+	// クリックフィードバックを処理する関数
+	const handleCardClick = (image: GyazoImage) => {
+		if (!image.image_id || !image.permalink_url || !image.url) {
+			setShowProModal(true);
+			return;
+		}
+
+		// クリックされた画像のIDを設定
+		setClickedId(image.image_id);
+
+		// フィードバックアニメーション後にIDをリセット
+		setTimeout(() => {
+			setClickedId(null);
+			onImageClick(image);
+		}, 150);
+	};
 
 	if (loading) {
 		return (
@@ -210,20 +267,15 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 				{displayImages.map((image, index) => {
 					const isLocked =
 						!image.image_id || !image.permalink_url || !image.url;
+					const isClicked = clickedId === image.image_id;
 
 					return (
 						<div
 							key={image.image_id || `locked-${index}`}
 							className={`gyazo-card ${
 								isLocked ? "gyazo-locked" : ""
-							}`}
-							onClick={() => {
-								if (isLocked) {
-									setShowProModal(true);
-								} else {
-									onImageClick(image);
-								}
-							}}
+							} ${isClicked ? "clicked" : ""}`}
+							onClick={() => handleCardClick(image)}
 							onContextMenu={(e) => {
 								if (isLocked) {
 									setShowProModal(true);
