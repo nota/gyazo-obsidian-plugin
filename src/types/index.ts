@@ -1,14 +1,12 @@
 export interface GyazoPluginSettings {
   accessToken: string;
   language: 'en' | 'ja';
-  isPro: boolean;
   oauthState?: string;
 }
 
 export const DEFAULT_SETTINGS: GyazoPluginSettings = {
   accessToken: '',
   language: 'en',
-  isPro: false,
   oauthState: ''
 };
 

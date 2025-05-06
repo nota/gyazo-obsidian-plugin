@@ -75,15 +75,5 @@ export class GyazoSettingTab extends PluginSettingTab {
                     await this.plugin.saveSettings();
                     this.display(); // Refresh to update language
                 }));
-
-        new Setting(containerEl)
-            .setName(t.isPro)
-            .setDesc(t.isProDesc)
-            .addToggle(toggle => toggle
-                .setValue(this.plugin.settings.isPro)
-                .onChange(async (value) => {
-                    this.plugin.settings.isPro = value;
-                    await this.plugin.saveSettings();
-                }));
     }
 }
