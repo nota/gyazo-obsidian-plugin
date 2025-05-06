@@ -202,7 +202,6 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 		return <div className="gyazo-empty">{translations.noImages}</div>;
 	}
 
-	const freeLimit = 10;
 	const displayImages = images;
 
 	return (
