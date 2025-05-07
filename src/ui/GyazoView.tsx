@@ -75,23 +75,14 @@ export class GyazoView extends ItemView {
 	}
 
 	private handleImageClick(image: GyazoImage): void {
-		const activeEditor = this.plugin.getActiveEditor();
-		if (activeEditor) {
-			this.embedImage(activeEditor, image);
-			// 成功メッセージを表示
-			this.showToast(
-				this.plugin.getTranslation().imageCopiedToEditor ||
-					"Image inserted into editor"
-			);
-		} else {
-			// エディタが非アクティブならブラウザで開く
-			window.open(image.permalink_url, "_blank");
-			// 成功メッセージを表示
-			this.showToast(
-				this.plugin.getTranslation().imageOpenedInBrowser ||
-					"Image opened in browser"
-			);
-		}
+		// Markdown を生成
+		const markdown = `![](${image.url})`;
+
+		// クリップボードにコピー
+		navigator.clipboard.writeText(markdown);
+
+		// 成功メッセージを表示
+		this.showToast(this.plugin.getTranslation().imageCopiedToClipboard);
 	}
 
 	private showToast(message: string): void {
