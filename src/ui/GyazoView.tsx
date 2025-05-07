@@ -193,21 +193,43 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 		if (!onImageClick) {
 			return (
 				<div className="gyazo-login-container">
-					<h2>{translations.loginRequired}</h2>
+					<h2>{translations.noAccessToken}</h2>
 					<p>{translations.loginRequiredDesc}</p>
-					<button
-						className="gyazo-login-button"
-						onClick={() => {
-							const plugin = (window as any).gyazoPlugin;
-							if (plugin && plugin.api) {
-								const authUrl =
-									plugin.api.generateAuthorizeUrl();
-								window.open(authUrl, "_blank");
-							}
-						}}
-					>
-						{translations.loginButton}
-					</button>
+					
+					<div className="gyazo-button-container">
+						<button
+							className="gyazo-login-button"
+							onClick={() => {
+								const plugin = (window as any).gyazoPlugin;
+								if (plugin) {
+									plugin.openSettings();
+								}
+							}}
+						>
+							{translations.openSettings}
+						</button>
+						<p className="gyazo-button-desc">{translations.openSettingsDesc}</p>
+						
+						<button
+							className="gyazo-login-button"
+							onClick={() => {
+								window.open('https://gyazo.com/oauth/applications', '_blank');
+							}}
+						>
+							{translations.openApiDashboard}
+						</button>
+						<p className="gyazo-button-desc">{translations.openApiDashboardDesc}</p>
+						
+						<button
+							className="gyazo-login-button"
+							onClick={() => {
+								window.open('https://gyazo.com/download', '_blank');
+							}}
+						>
+							{translations.downloadGyazo}
+						</button>
+						<p className="gyazo-button-desc">{translations.downloadGyazoDesc}</p>
+					</div>
 				</div>
 			);
 		}

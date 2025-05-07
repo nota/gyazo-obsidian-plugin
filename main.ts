@@ -126,6 +126,13 @@ export default class GyazoPlugin extends Plugin {
 	getTranslation(): Translations {
 		return translations[this.settings.language];
 	}
+	
+	openSettings(): void {
+		(this.app as any).setting.open();
+		setTimeout(() => {
+			(this.app as any).setting.openTabById('obsidian-gyazo-plugin');
+		}, 100);
+	}
 
 	async getGyazoImages(): Promise<GyazoImage[]> {
 		if (!this.settings.accessToken) {

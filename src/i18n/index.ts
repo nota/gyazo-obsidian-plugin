@@ -27,6 +27,11 @@ export interface Translations {
 	imageCopiedToEditor: string; // 追加: エディタに画像が挿入された時のメッセージ
 	imageCopiedToClipboard: string; // 追加: クリップボードにコピーされた時のメッセージ
 	imageOpenedInBrowser: string; // 追加: ブラウザで画像が開かれた時のメッセージ
+	openSettings: string; // 追加: 設定画面を開くボタンのテキスト
+	openSettingsDesc: string; // 追加: 設定画面を開く説明テキスト
+	downloadGyazo: string; // 追加: Gyazoをダウンロードするボタンのテキスト
+	downloadGyazoDesc: string; // 追加: Gyazoをダウンロードする説明テキスト
+	noAccessToken: string; // 追加: アクセストークンがない場合のメッセージ
 }
 
 export const translations: Record<"en" | "ja", Translations> = {
@@ -61,6 +66,11 @@ export const translations: Record<"en" | "ja", Translations> = {
 		imageCopiedToEditor: "Image inserted into editor",
 		imageCopiedToClipboard: "Image copied to clipboard",
 		imageOpenedInBrowser: "Image opened in browser",
+		openSettings: "Open Plugin Settings",
+		openSettingsDesc: "Configure your Gyazo API access token in the plugin settings",
+		downloadGyazo: "Download Gyazo",
+		downloadGyazoDesc: "New to Gyazo? Download and install it to get started",
+		noAccessToken: "No Gyazo Access Token Found",
 	},
 	ja: {
 		ribbonTooltip: "Gyazoキャプチャ",
@@ -94,5 +104,10 @@ export const translations: Record<"en" | "ja", Translations> = {
 		imageCopiedToEditor: "エディタに画像を挿入しました",
 		imageCopiedToClipboard: "画像をクリップボードにコピーしました",
 		imageOpenedInBrowser: "ブラウザで画像が開かれました",
+		openSettings: "プラグイン設定を開く",
+		openSettingsDesc: "プラグイン設定でGyazo APIアクセストークンを設定してください",
+		downloadGyazo: "Gyazoをダウンロード",
+		downloadGyazoDesc: "Gyazoを初めて使用する場合は、ダウンロードしてインストールしてください",
+		noAccessToken: "Gyazoアクセストークンが見つかりません",
 	},
 };
