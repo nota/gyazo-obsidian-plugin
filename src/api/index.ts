@@ -26,30 +26,13 @@ export class GyazoApi {
                 }
             });
             
-            return response.data.map((image: any) => ({
-                image_id: image.image_id,
-                permalink_url: image.permalink_url,
-                thumb_url: image.thumb_url,
-                url: image.url,
-                type: this.determineType(image),
-                created_at: image.created_at,
-                metadata: image.metadata || {}
-            }));
+            return response.data;
         } catch (error) {
             console.error('Error fetching Gyazo images:', error);
             throw error;
         }
     }
 
-    private determineType(image: any): 'png' | 'gif' | 'mp4' {
-        if (image.type === 'gif' || (image.url && image.url.endsWith('.gif'))) {
-            return 'gif';
-        } else if (image.type === 'mp4' || (image.url && image.url.endsWith('.mp4'))) {
-            return 'mp4';
-        }
-        return 'png';
-    }
-    
     /**
      * Generate the authorization URL for OAuth
      */

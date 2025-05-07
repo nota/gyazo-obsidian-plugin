@@ -101,13 +101,7 @@ export default class GyazoPlugin extends Plugin {
 				const image = images.find((img) => img.image_id === imageId);
 
 				if (image) {
-					if (image.type === "mp4") {
-						editor.replaceSelection(
-							`<video src="${image.url}" controls></video>`
-						);
-					} else {
-						editor.replaceSelection(`![](${image.url})`);
-					}
+					editor.replaceSelection(`![](${image.url})`);
 				}
 			}
 		});

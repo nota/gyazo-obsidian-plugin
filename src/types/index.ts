@@ -15,8 +15,7 @@ export interface GyazoImage {
   permalink_url: string;
   thumb_url: string;
   url: string;
-  mp4_url?: string;  // Added mp4_url property
-  type: 'png' | 'gif' | 'mp4';
+  type: 'png' | 'gif';
   created_at: string;
   metadata?: {
       title?: string;

@@ -140,31 +140,6 @@ export class GyazoView extends ItemView {
 				});
 		});
 
-		if (image.type === "gif" && image.mp4_url) {
-			menu.addSeparator();
-
-			menu.addItem((item: MenuItem) => {
-				item.setTitle(t.copyMarkdownGif)
-					.setIcon("clipboard-copy")
-					.onClick(() => {
-						const markdown = `![](${image.url.replace(
-							".mp4",
-							".gif"
-						)})`;
-						navigator.clipboard.writeText(markdown);
-					});
-			});
-
-			menu.addItem((item: MenuItem) => {
-				item.setTitle(t.copyMarkdownMp4)
-					.setIcon("clipboard-copy")
-					.onClick(() => {
-						const markdown = `<video src="${image.mp4_url}" controls></video>`;
-						navigator.clipboard.writeText(markdown);
-					});
-			});
-		}
-
 		menu.showAtMouseEvent(event.nativeEvent);
 	}
 
