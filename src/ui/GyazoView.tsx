@@ -84,16 +84,12 @@ export class GyazoView extends ItemView {
 					"Image inserted into editor"
 			);
 		} else {
-			// エディタがない場合はクリップボードにコピー
-			const markdown =
-				image.type === "mp4"
-					? `<video src="${image.url}" controls></video>`
-					: `![](${image.url})`;
-			navigator.clipboard.writeText(markdown);
-			// コピー成功メッセージを表示
+			// エディタが非アクティブならブラウザで開く
+			window.open(image.permalink_url, "_blank");
+			// 成功メッセージを表示
 			this.showToast(
-				this.plugin.getTranslation().imageCopiedToClipboard ||
-					"Image copied to clipboard"
+				this.plugin.getTranslation().imageOpenedInBrowser ||
+					"Image opened in browser"
 			);
 		}
 	}

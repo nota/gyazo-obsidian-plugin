@@ -26,6 +26,7 @@ export interface Translations {
 	tokenRevoked: string;
 	imageCopiedToEditor: string; // 追加: エディタに画像が挿入された時のメッセージ
 	imageCopiedToClipboard: string; // 追加: クリップボードにコピーされた時のメッセージ
+	imageOpenedInBrowser: string; // 追加: ブラウザで画像が開かれた時のメッセージ
 }
 
 export const translations: Record<"en" | "ja", Translations> = {
@@ -59,6 +60,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		tokenRevoked: "Access token has been revoked",
 		imageCopiedToEditor: "Image inserted into editor",
 		imageCopiedToClipboard: "Image copied to clipboard",
+		imageOpenedInBrowser: "Image opened in browser",
 	},
 	ja: {
 		ribbonTooltip: "Gyazoキャプチャ",
@@ -91,5 +93,6 @@ export const translations: Record<"en" | "ja", Translations> = {
 		tokenRevoked: "アクセストークンが取り消されました",
 		imageCopiedToEditor: "エディタに画像を挿入しました",
 		imageCopiedToClipboard: "画像をクリップボードにコピーしました",
+		imageOpenedInBrowser: "ブラウザで画像が開かれました",
 	},
 };
