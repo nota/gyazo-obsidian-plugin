@@ -196,7 +196,6 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 		return (
 			<div className="gyazo-login-container">
 				<h2>{translations.noAccessToken}</h2>
-				<p>{translations.loginRequiredDesc}</p>
 				
 				<div className="gyazo-button-container">
 					<p className="gyazo-button-desc">{translations.openSettingsDesc}</p>

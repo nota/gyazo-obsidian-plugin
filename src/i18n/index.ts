@@ -42,7 +42,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		accessTokenDesc: "Enter your Gyazo API access token",
 		openApiDashboard: "Open API Dashboard",
 		openApiDashboardDesc:
-			"Open Gyazo API dashboard to get your access token",
+			"Open Gyazo API dashboard to create a new application",
 		languageLabel: "Language",
 		languageDesc: "Select your preferred language",
 		save: "Save",
@@ -70,7 +70,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		openSettingsDesc: "Configure your Gyazo API access token in the plugin settings",
 		downloadGyazo: "Download Gyazo",
 		downloadGyazoDesc: "New to Gyazo? Download and install it to get started",
-		noAccessToken: "Please log in or sign up to start using Gyazo captures",
+		noAccessToken: "Please log in or sign up to start using Gyazo",
 	},
 	ja: {
 		ribbonTooltip: "Gyazoキャプチャ",
@@ -79,7 +79,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		accessTokenDesc: "Gyazo APIのアクセストークンを入力してください",
 		openApiDashboard: "APIダッシュボードを開く",
 		openApiDashboardDesc:
-			"Gyazo APIダッシュボードを開いてアクセストークンを取得する",
+			"Gyazo APIダッシュボードを開いて新しいアプリケーションを作成",
 		languageLabel: "言語",
 		languageDesc: "表示言語を選択してください",
 		save: "保存",
@@ -108,6 +108,6 @@ export const translations: Record<"en" | "ja", Translations> = {
 		openSettingsDesc: "プラグイン設定でGyazo APIアクセストークンを設定してください",
 		downloadGyazo: "Gyazoをダウンロード",
 		downloadGyazoDesc: "Gyazoを初めて使用する場合は、ダウンロードしてインストールしてください",
-		noAccessToken: "Gyazoキャプチャを使用するにはログインまたはサインアップしてください",
+		noAccessToken: "Gyazoを使用するにはログインまたはサインアップが必要です",
 	},
 };
