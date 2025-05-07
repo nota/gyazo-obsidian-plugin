@@ -1,10 +1,10 @@
 {
 	"id": "obsidian-gyazo-plugin",
-	"name": "Gyazo Plugin",
+	"name": "Gyazo Captures",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "Displays and embeds Gyazo captures in Obsidian.",
-	"author": "Devin AI",
+	"author": "Helpfeel Inc.",
 	"authorUrl": "https://github.com",
 	"fundingUrl": "https://gyazo.com/pro",
 	"isDesktopOnly": false
