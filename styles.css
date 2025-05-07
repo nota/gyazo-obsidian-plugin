@@ -192,3 +192,21 @@ Gyazo Plugin Styles
 .gyazo-toast.show {
 	opacity: 1;
 }
+
+/* Button container for access token guidance */
+.gyazo-button-container {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 16px;
+}
+
+.gyazo-button-desc {
+	margin: 4px 0 12px 0;
+	font-size: 0.9em;
+	opacity: 0.8;
+}
+
+.gyazo-login-button {
+	margin-bottom: 4px;
+}

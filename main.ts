@@ -126,6 +126,19 @@ export default class GyazoPlugin extends Plugin {
 	getTranslation(): Translations {
 		return translations[this.settings.language];
 	}
+	
+	openSettings(): void {
+		const settings = (this.app as any)?.setting;
+		if (settings?.open && settings?.openTabById) {
+			settings.open();
+			setTimeout(() => {
+				settings.openTabById('obsidian-gyazo-plugin');
+			}, 100);
+		} else {
+			console.error("Failed to open settings: 'setting' API is unavailable.");
+			new Notice("Unable to open settings. Please check if the plugin is compatible with your Obsidian version.");
+		}
+	}
 
 	async getGyazoImages(): Promise<GyazoImage[]> {
 		if (!this.settings.accessToken) {

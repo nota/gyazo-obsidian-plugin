@@ -27,6 +27,11 @@ export interface Translations {
 	imageCopiedToEditor: string; // 追加: エディタに画像が挿入された時のメッセージ
 	imageCopiedToClipboard: string; // 追加: クリップボードにコピーされた時のメッセージ
 	imageOpenedInBrowser: string; // 追加: ブラウザで画像が開かれた時のメッセージ
+	openSettings: string; // 追加: 設定画面を開くボタンのテキスト
+	openSettingsDesc: string; // 追加: 設定画面を開く説明テキスト
+	downloadGyazo: string; // 追加: Gyazoをダウンロードするボタンのテキスト
+	downloadGyazoDesc: string; // 追加: Gyazoをダウンロードする説明テキスト
+	noAccessToken: string; // 追加: アクセストークンがない場合のメッセージ
 }
 
 export const translations: Record<"en" | "ja", Translations> = {
@@ -37,7 +42,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		accessTokenDesc: "Enter your Gyazo API access token",
 		openApiDashboard: "Open API Dashboard",
 		openApiDashboardDesc:
-			"Open Gyazo OAuth applications page to get your access token",
+			"Open Gyazo API dashboard to create a new application",
 		languageLabel: "Language",
 		languageDesc: "Select your preferred language",
 		save: "Save",
@@ -61,6 +66,11 @@ export const translations: Record<"en" | "ja", Translations> = {
 		imageCopiedToEditor: "Image inserted into editor",
 		imageCopiedToClipboard: "Image copied to clipboard",
 		imageOpenedInBrowser: "Image opened in browser",
+		openSettings: "Open Plugin Settings",
+		openSettingsDesc: "Configure your Gyazo API access token in the plugin settings",
+		downloadGyazo: "Download Gyazo",
+		downloadGyazoDesc: "New to Gyazo? Download and install it to get started",
+		noAccessToken: "Please log in or sign up to start using Gyazo",
 	},
 	ja: {
 		ribbonTooltip: "Gyazoキャプチャ",
@@ -69,7 +79,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		accessTokenDesc: "Gyazo APIのアクセストークンを入力してください",
 		openApiDashboard: "APIダッシュボードを開く",
 		openApiDashboardDesc:
-			"Gyazo OAuthアプリケーションページを開いてアクセストークンを取得する",
+			"Gyazo APIダッシュボードを開いて新しいアプリケーションを作成",
 		languageLabel: "言語",
 		languageDesc: "表示言語を選択してください",
 		save: "保存",
@@ -94,5 +104,10 @@ export const translations: Record<"en" | "ja", Translations> = {
 		imageCopiedToEditor: "エディタに画像を挿入しました",
 		imageCopiedToClipboard: "画像をクリップボードにコピーしました",
 		imageOpenedInBrowser: "ブラウザで画像が開かれました",
+		openSettings: "プラグイン設定を開く",
+		openSettingsDesc: "プラグイン設定でGyazo APIアクセストークンを設定してください",
+		downloadGyazo: "Gyazoをダウンロード",
+		downloadGyazoDesc: "Gyazoを初めて使用する場合は、ダウンロードしてインストールしてください",
+		noAccessToken: "Gyazoを使用するにはログインまたはサインアップが必要です",
 	},
 };
