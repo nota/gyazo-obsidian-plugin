@@ -199,6 +199,7 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 				<p>{translations.loginRequiredDesc}</p>
 				
 				<div className="gyazo-button-container">
+					<p className="gyazo-button-desc">{translations.openSettingsDesc}</p>
 					<button
 						className="gyazo-login-button"
 						onClick={() => {
@@ -209,8 +210,8 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 					>
 						{translations.openSettings}
 					</button>
-					<p className="gyazo-button-desc">{translations.openSettingsDesc}</p>
 					
+					<p className="gyazo-button-desc">{translations.openApiDashboardDesc}</p>
 					<button
 						className="gyazo-login-button"
 						onClick={() => {
@@ -219,8 +220,8 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 					>
 						{translations.openApiDashboard}
 					</button>
-					<p className="gyazo-button-desc">{translations.openApiDashboardDesc}</p>
 					
+					<p className="gyazo-button-desc">{translations.downloadGyazoDesc}</p>
 					<button
 						className="gyazo-login-button"
 						onClick={() => {
@@ -229,7 +230,6 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 					>
 						{translations.downloadGyazo}
 					</button>
-					<p className="gyazo-button-desc">{translations.downloadGyazoDesc}</p>
 				</div>
 			</div>
 		);
