@@ -140,7 +140,7 @@ export class GyazoView extends ItemView {
 				});
 		});
 
-		if (image.type === "gif" || image.type === "mp4") {
+		if (image.type === "gif" && image.mp4_url) {
 			menu.addSeparator();
 
 			menu.addItem((item: MenuItem) => {
@@ -159,7 +159,7 @@ export class GyazoView extends ItemView {
 				item.setTitle(t.copyMarkdownMp4)
 					.setIcon("clipboard-copy")
 					.onClick(() => {
-						const markdown = `<video src="${image.url}" controls></video>`;
+						const markdown = `<video src="${image.mp4_url}" controls></video>`;
 						navigator.clipboard.writeText(markdown);
 					});
 			});
@@ -169,13 +169,7 @@ export class GyazoView extends ItemView {
 	}
 
 	private embedImage(editor: Editor, image: GyazoImage): void {
-		if (image.type === "mp4") {
-			editor.replaceSelection(
-				`<video src="${image.url}" controls></video>`
-			);
-		} else {
-			editor.replaceSelection(`![](${image.url})`);
-		}
+		editor.replaceSelection(`![](${image.url})`);
 	}
 }
 
@@ -294,10 +288,7 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 									onClick={(e) => {
 										e.stopPropagation();
 										if (!isLocked) {
-											const markdown =
-												image.type === "mp4"
-													? `<video src="${image.url}" controls></video>`
-													: `![](${image.url})`;
+											const markdown = `![](${image.url})`;
 											navigator.clipboard.writeText(
 												markdown
 											);
