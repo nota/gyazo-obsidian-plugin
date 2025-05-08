@@ -108,9 +108,10 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 				</a>
 			</div>
 
-			{/* Description as h2 element */}
-			{image.desc && (
-				<h2 className="gyazo-image-description">{image.desc}</h2>
+			{image.metadata.desc && (
+				<h2 className="gyazo-image-description">
+					{image.metadata.desc}
+				</h2>
 			)}
 
 			<div className="gyazo-metadata">
@@ -173,7 +174,16 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 					</div>
 				)}
 
-				{/* OCR data - not implemented yet */}
+				{image.ocr?.description && (
+					<div className="gyazo-metadata-item">
+						<div className="gyazo-metadata-label">
+							{translations.ocr}
+						</div>
+						<div className="gyazo-metadata-value">
+							{image.ocr.description}
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);
