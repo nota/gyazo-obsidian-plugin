@@ -59,6 +59,23 @@ export class GyazoView extends ItemView {
 		}
 	}
 
+	async refreshImages(): Promise<void> {
+		this.loading = true;
+		this.renderComponent();
+
+		try {
+			this.images = await this.plugin.getGyazoImages();
+			this.loading = false;
+			this.error = null;
+		} catch (err) {
+			this.loading = false;
+			this.error = "Error loading images";
+			console.error("Failed to load Gyazo images:", err);
+		}
+
+		this.renderComponent();
+	}
+
 	private renderComponent(): void {
 		this.reactComponent = (
 			<GyazoGallery
@@ -68,6 +85,7 @@ export class GyazoView extends ItemView {
 				translations={this.plugin.getTranslation()}
 				onImageClick={this.handleImageClick.bind(this)}
 				onContextMenu={this.handleContextMenu.bind(this)}
+				onRefresh={this.refreshImages.bind(this)}
 			/>
 		);
 
@@ -146,6 +164,7 @@ interface GyazoGalleryProps {
 	translations: Translations;
 	onImageClick: (image: GyazoImage) => void;
 	onContextMenu: (event: React.MouseEvent, image: GyazoImage) => void;
+	onRefresh: () => void;
 }
 
 const GyazoGallery: React.FC<GyazoGalleryProps> = ({
@@ -155,6 +174,7 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 	translations,
 	onImageClick,
 	onContextMenu,
+	onRefresh,
 }) => {
 	const [showProModal, setShowProModal] = React.useState(false);
 	// クリックされた画像IDを管理する状態
@@ -242,6 +262,21 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 
 	return (
 		<div className="gyazo-gallery">
+			<div className="gyazo-header">
+				<button
+					className="gyazo-refresh-button"
+					onClick={onRefresh}
+					title={translations.refreshButton}
+				>
+					<svg viewBox="0 0 24 24" width="14" height="14">
+						<path
+							fill="currentColor"
+							d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 9h7V2l-2.35 4.35z"
+						/>
+					</svg>
+					{translations.refreshButton}
+				</button>
+			</div>
 			<div className="gyazo-grid">
 				{displayImages.map((image, index) => {
 					const isLocked =

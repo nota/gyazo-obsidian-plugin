@@ -32,6 +32,7 @@ export interface Translations {
 	downloadGyazo: string; // 追加: Gyazoをダウンロードするボタンのテキスト
 	downloadGyazoDesc: string; // 追加: Gyazoをダウンロードする説明テキスト
 	noAccessToken: string; // 追加: アクセストークンがない場合のメッセージ
+	refreshButton: string; // 追加: 更新ボタンのテキスト
 }
 
 export const translations: Record<"en" | "ja", Translations> = {
@@ -71,6 +72,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		downloadGyazo: "Download Gyazo",
 		downloadGyazoDesc: "New to Gyazo? Download and install it to get started",
 		noAccessToken: "Please log in or sign up to start using Gyazo",
+		refreshButton: "Refresh",
 	},
 	ja: {
 		ribbonTooltip: "Gyazoキャプチャ",
@@ -109,5 +111,6 @@ export const translations: Record<"en" | "ja", Translations> = {
 		downloadGyazo: "Gyazoをダウンロード",
 		downloadGyazoDesc: "Gyazoを初めて使用する場合は、ダウンロードしてインストールしてください",
 		noAccessToken: "Gyazoを使用するにはログインまたはサインアップが必要です",
+		refreshButton: "更新",
 	},
 };
