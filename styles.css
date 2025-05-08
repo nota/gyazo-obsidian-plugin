@@ -266,26 +266,21 @@ Gyazo Plugin Styles
 	border-radius: 4px;
 }
 
-.gyazo-detail-actions {
-	display: flex;
-	gap: 10px;
-	margin-bottom: 20px;
+.gyazo-image-description {
+	margin: 0 0 20px 0;
+	padding: 0 0 10px 0;
+	font-size: 1.2em;
+	color: var(--text-normal);
+	border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.gyazo-detail-action-button {
-	background-color: var(--interactive-accent);
-	color: var(--text-on-accent);
-	border: none;
-	border-radius: 4px;
-	padding: 6px 12px;
-	display: flex;
-	align-items: center;
-	gap: 6px;
-	cursor: pointer;
+.gyazo-source-link {
+	color: var(--text-accent);
+	text-decoration: none;
 }
 
-.gyazo-detail-action-button:hover {
-	opacity: 0.9;
+.gyazo-source-link:hover {
+	text-decoration: underline;
 }
 
 .gyazo-metadata {

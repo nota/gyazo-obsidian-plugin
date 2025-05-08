@@ -21,6 +21,8 @@ export interface GyazoImage {
       title?: string;
       app?: string;
       desc?: string;
-      ocr?: string;
+      ocr?: {
+          description?: string;
+      };
   };
 }
