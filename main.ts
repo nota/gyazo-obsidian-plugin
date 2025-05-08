@@ -16,6 +16,7 @@ import { translations, Translations } from "./src/i18n/index";
 import { GyazoApi } from "./src/api/index";
 import { GyazoSettingTab } from "./src/settings/index";
 import { GyazoView, GYAZO_VIEW_TYPE } from "./src/ui/GyazoView";
+import { GyazoDetailView, GYAZO_DETAIL_VIEW_TYPE } from "./src/ui/GyazoDetailView";
 
 declare global {
 	interface Window {
@@ -40,6 +41,11 @@ export default class GyazoPlugin extends Plugin {
 		this.registerView(
 			GYAZO_VIEW_TYPE,
 			(leaf: WorkspaceLeaf) => new GyazoView(leaf, this)
+		);
+
+		this.registerView(
+			GYAZO_DETAIL_VIEW_TYPE,
+			(leaf: WorkspaceLeaf) => new GyazoDetailView(leaf, this)
 		);
 
 		const ribbonIconEl = this.addRibbonIcon(
@@ -109,6 +115,7 @@ export default class GyazoPlugin extends Plugin {
 
 	onunload() {
 		this.app.workspace.detachLeavesOfType(GYAZO_VIEW_TYPE);
+		this.app.workspace.detachLeavesOfType(GYAZO_DETAIL_VIEW_TYPE);
 	}
 
 	async loadSettings() {
