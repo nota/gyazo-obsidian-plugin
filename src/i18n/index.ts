@@ -10,8 +10,17 @@ export interface Translations {
 	save: string;
 	copyUrl: string;
 	openInBrowser: string;
+	copyMarkdown: string;
 	copyMarkdownGif: string;
 	copyMarkdownMp4: string;
+	detailViewTitle: string;
+	selectImageToView: string;
+	uploadDate: string;
+	description: string;
+	title: string;
+	app: string;
+	source: string;
+	ocr: string;
 	upgradeToProTitle: string;
 	upgradeToProDesc: string;
 	upgradeToProButton: string;
@@ -49,8 +58,17 @@ export const translations: Record<"en" | "ja", Translations> = {
 		save: "Save",
 		copyUrl: "Copy URL",
 		openInBrowser: "Open in Browser",
+		copyMarkdown: "Copy Markdown",
 		copyMarkdownGif: "Copy GIF Markdown",
 		copyMarkdownMp4: "Copy MP4 Markdown",
+		detailViewTitle: "Image Details",
+		selectImageToView: "Select an image to view details",
+		uploadDate: "Uploaded at",
+		description: "Description",
+		title: "Title",
+		app: "App",
+		source: "Source",
+		ocr: "OCR",
 		upgradeToProTitle: "Upgrade to Gyazo Pro",
 		upgradeToProDesc: "Upgrade to Gyazo Pro to access all your captures",
 		upgradeToProButton: "Upgrade Now",
@@ -87,8 +105,17 @@ export const translations: Record<"en" | "ja", Translations> = {
 		save: "保存",
 		copyUrl: "URLをコピー",
 		openInBrowser: "ブラウザで開く",
+		copyMarkdown: "マークダウンをコピー",
 		copyMarkdownGif: "GIF形式でマークダウンをコピー",
 		copyMarkdownMp4: "MP4形式でマークダウンをコピー",
+		detailViewTitle: "画像詳細",
+		selectImageToView: "詳細を表示する画像を選択してください",
+		uploadDate: "アップロード日時",
+		description: "説明",
+		title: "タイトル",
+		app: "アプリケーション",
+		source: "キャプチャ元",
+		ocr: "OCR",
 		upgradeToProTitle: "Gyazo Proにアップグレード",
 		upgradeToProDesc:
 			"Gyazo Proにアップグレードして全てのキャプチャにアクセスしましょう",

@@ -4,6 +4,7 @@ import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
 import GyazoPlugin from "../../main";
 import { Editor, ItemView, MenuItem, WorkspaceLeaf } from "obsidian";
+import { GYAZO_DETAIL_VIEW_TYPE } from "./GyazoDetailView";
 
 export const GYAZO_VIEW_TYPE = "gyazo-view";
 
@@ -87,6 +88,8 @@ export class GyazoView extends ItemView {
 	}
 
 	private handleImageClick(image: GyazoImage): void {
+		this.openDetailView(image);
+		
 		// Markdown を生成
 		const markdown = `![](${image.url})`;
 
@@ -95,6 +98,28 @@ export class GyazoView extends ItemView {
 
 		// 成功メッセージを表示
 		this.showToast(this.plugin.getTranslation().imageCopiedToClipboard);
+	}
+	
+	private openDetailView(image: GyazoImage): void {
+		const detailLeaves = this.app.workspace.getLeavesOfType(GYAZO_DETAIL_VIEW_TYPE);
+		let detailLeaf = detailLeaves.length > 0 ? detailLeaves[0] : null;
+		
+		if (!detailLeaf) {
+			detailLeaf = this.app.workspace.getLeaf('split', 'vertical');
+			detailLeaf.setViewState({
+				type: GYAZO_DETAIL_VIEW_TYPE,
+				active: true,
+			});
+		} else {
+			this.app.workspace.revealLeaf(detailLeaf);
+		}
+		
+		if (detailLeaf.view) {
+			const detailView = detailLeaf.view as any;
+			if (typeof detailView.setImage === 'function') {
+				detailView.setImage(image);
+			}
+		}
 	}
 
 	private showToast(message: string): void {
