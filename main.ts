@@ -7,6 +7,7 @@ import {
 	Plugin,
 	WorkspaceLeaf,
 } from "obsidian";
+import { generateGyazoMarkdown } from "./src/util/index";
 import {
 	GyazoPluginSettings,
 	DEFAULT_SETTINGS,
@@ -107,10 +108,7 @@ export default class GyazoPlugin extends Plugin {
 				const image = images.find((img) => img.image_id === imageId);
 
 				if (image) {
-					const altText = image.alt_text && image.alt_text.trim() !== "" 
-						? image.alt_text 
-						: "";
-					editor.replaceSelection(`[![${altText}](${image.url})](${image.permalink_url})`);
+					editor.replaceSelection(generateGyazoMarkdown(image));
 				}
 			}
 		});

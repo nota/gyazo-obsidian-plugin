@@ -2,6 +2,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
+import { generateGyazoMarkdown } from "../util/index";
 import GyazoPlugin from "../../main";
 import { Editor, ItemView, MenuItem, WorkspaceLeaf } from "obsidian";
 import { GYAZO_DETAIL_VIEW_TYPE } from "./GyazoDetailView";
@@ -91,7 +92,7 @@ export class GyazoView extends ItemView {
 		this.openDetailView(image);
 		
 		// Markdown を生成
-		const markdown = this.generateGyazoMarkdown(image);
+		const markdown = generateGyazoMarkdown(image);
 
 		// クリップボードにコピー
 		navigator.clipboard.writeText(markdown);
@@ -172,14 +173,7 @@ export class GyazoView extends ItemView {
 	}
 
 	private embedImage(editor: Editor, image: GyazoImage): void {
-		editor.replaceSelection(this.generateGyazoMarkdown(image));
-	}
-
-	private generateGyazoMarkdown(image: GyazoImage): string {
-		const altText = image.alt_text && image.alt_text.trim() !== "" 
-			? image.alt_text 
-			: "";
-		return `[![${altText}](${image.url})](${image.permalink_url})`;
+		editor.replaceSelection(generateGyazoMarkdown(image));
 	}
 }
 
@@ -338,10 +332,7 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 									onClick={(e) => {
 										e.stopPropagation();
 										if (!isLocked) {
-											const altText = image.alt_text && image.alt_text.trim() !== "" 
-												? image.alt_text 
-												: "";
-											const markdown = `[![${altText}](${image.url})](${image.permalink_url})`;
+											const markdown = generateGyazoMarkdown(image);
 											navigator.clipboard.writeText(
 												markdown
 											);
