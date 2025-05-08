@@ -108,7 +108,7 @@ export default class GyazoPlugin extends Plugin {
 				const image = images.find((img) => img.image_id === imageId);
 
 				if (image) {
-					editor.replaceSelection(generateGyazoMarkdown(image));
+					editor.replaceSelection(generateGyazoMarkdown(image, this.settings));
 				}
 			}
 		});
