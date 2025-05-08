@@ -40,17 +40,7 @@ export class GyazoView extends ItemView {
 		this.loading = true;
 		this.renderComponent();
 
-		try {
-			this.images = await this.plugin.getGyazoImages();
-			this.loading = false;
-			this.error = null;
-		} catch (err) {
-			this.loading = false;
-			this.error = "Error loading images";
-			console.error("Failed to load Gyazo images:", err);
-		}
-
-		this.renderComponent();
+		await this.loadImages();
 	}
 
 	async onClose(): Promise<void> {
@@ -63,13 +53,17 @@ export class GyazoView extends ItemView {
 		this.loading = true;
 		this.renderComponent();
 
+		await this.loadImages();
+	}
+
+	private async loadImages(): Promise<void> {
 		try {
 			this.images = await this.plugin.getGyazoImages();
 			this.loading = false;
 			this.error = null;
 		} catch (err) {
 			this.loading = false;
-			this.error = "Error loading images";
+			this.error = this.plugin.getTranslation().errorLoadingImages;
 			console.error("Failed to load Gyazo images:", err);
 		}
 
