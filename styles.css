@@ -308,8 +308,31 @@ Gyazo Plugin Styles
 
 .gyazo-metadata-label {
 	font-weight: bold;
-	margin-right: 5px;
 	color: var(--text-muted);
+	margin-bottom: 4px;
+}
+
+.gyazo-metadata-value {
+	word-break: break-word;
+}
+
+.gyazo-title-desc-container {
+	margin-bottom: 20px;
+	padding: 15px;
+	background-color: var(--background-primary);
+	border-radius: 8px;
+	border: 1px solid var(--background-modifier-border);
+}
+
+.gyazo-image-title {
+	margin: 0 0 10px 0;
+	font-size: 1.1em;
+	color: var(--text-normal);
+}
+
+.gyazo-image-desc {
+	color: var(--text-normal);
+	line-height: 1.5;
 }
 
 .gyazo-detail-empty {

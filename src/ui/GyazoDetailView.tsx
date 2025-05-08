@@ -110,12 +110,6 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 
 	return (
 		<div className="gyazo-detail-view">
-			<div className="gyazo-detail-header">
-				<h2 className="gyazo-detail-title">
-					{translations.detailViewTitle}
-				</h2>
-			</div>
-			
 			<div className="gyazo-detail-image-container">
 				<img src={image.url} alt="" className="gyazo-detail-image" />
 			</div>
@@ -150,36 +144,43 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 				</button>
 			</div>
 			
+			{/* Title and description below image */}
+			{(image.metadata?.title || image.metadata?.desc) && (
+				<div className="gyazo-title-desc-container">
+					{image.metadata?.title && (
+						<h3 className="gyazo-image-title">{image.metadata.title}</h3>
+					)}
+					
+					{image.metadata?.desc && (
+						<div className="gyazo-image-desc">{image.metadata.desc}</div>
+					)}
+				</div>
+			)}
+			
 			<div className="gyazo-metadata">
 				<div className="gyazo-metadata-item">
-					<span className="gyazo-metadata-label">{translations.uploadDate}:</span> 
-					{formatDate(image.created_at)}
+					<div className="gyazo-metadata-label">{translations.uploadDate}</div>
+					<div className="gyazo-metadata-value">{formatDate(image.created_at)}</div>
 				</div>
-				
-				{image.metadata?.desc && (
-					<div className="gyazo-metadata-item">
-						<span className="gyazo-metadata-label">{translations.description}:</span> 
-						{image.metadata.desc}
-					</div>
-				)}
-				
-				{image.metadata?.title && (
-					<div className="gyazo-metadata-item">
-						<span className="gyazo-metadata-label">{translations.title}:</span> 
-						{image.metadata.title}
-					</div>
-				)}
 				
 				{image.metadata?.app && (
 					<div className="gyazo-metadata-item">
-						<span className="gyazo-metadata-label">{translations.app}:</span> 
-						{image.metadata.app}
+						<div className="gyazo-metadata-label">{translations.app}</div>
+						<div className="gyazo-metadata-value">{image.metadata.app}</div>
 					</div>
 				)}
 				
 				<div className="gyazo-metadata-item">
-					<span className="gyazo-metadata-label">{translations.type}:</span> 
-					{image.type.toUpperCase()}
+					<div className="gyazo-metadata-label">{translations.source}</div>
+					<div className="gyazo-metadata-value">{image.permalink_url}</div>
+				</div>
+				
+				{/* OCR data - if available */}
+				<div className="gyazo-metadata-item">
+					<div className="gyazo-metadata-label">{translations.ocr}</div>
+					<div className="gyazo-metadata-value">
+						{image.metadata?.ocr || "-"}
+					</div>
 				</div>
 			</div>
 		</div>

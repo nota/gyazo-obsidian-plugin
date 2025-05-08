@@ -19,7 +19,8 @@ export interface Translations {
 	description: string;
 	title: string;
 	app: string;
-	type: string;
+	source: string;
+	ocr: string;
 	upgradeToProTitle: string;
 	upgradeToProDesc: string;
 	upgradeToProButton: string;
@@ -62,11 +63,12 @@ export const translations: Record<"en" | "ja", Translations> = {
 		copyMarkdownMp4: "Copy MP4 Markdown",
 		detailViewTitle: "Image Details",
 		selectImageToView: "Select an image to view details",
-		uploadDate: "Upload Date",
+		uploadDate: "Uploaded at",
 		description: "Description",
 		title: "Title",
 		app: "App",
-		type: "Type",
+		source: "Source",
+		ocr: "OCR",
 		upgradeToProTitle: "Upgrade to Gyazo Pro",
 		upgradeToProDesc: "Upgrade to Gyazo Pro to access all your captures",
 		upgradeToProButton: "Upgrade Now",
@@ -112,7 +114,8 @@ export const translations: Record<"en" | "ja", Translations> = {
 		description: "説明",
 		title: "タイトル",
 		app: "アプリ",
-		type: "タイプ",
+		source: "ソース",
+		ocr: "OCR",
 		upgradeToProTitle: "Gyazo Proにアップグレード",
 		upgradeToProDesc:
 			"Gyazo Proにアップグレードして全てのキャプチャにアクセスしましょう",
