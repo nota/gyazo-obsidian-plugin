@@ -91,7 +91,7 @@ export class GyazoView extends ItemView {
 		this.openDetailView(image);
 		
 		// Markdown を生成
-		const markdown = `![](${image.url})`;
+		const markdown = this.generateGyazoMarkdown(image);
 
 		// クリップボードにコピー
 		navigator.clipboard.writeText(markdown);
@@ -172,7 +172,14 @@ export class GyazoView extends ItemView {
 	}
 
 	private embedImage(editor: Editor, image: GyazoImage): void {
-		editor.replaceSelection(`![](${image.url})`);
+		editor.replaceSelection(this.generateGyazoMarkdown(image));
+	}
+
+	private generateGyazoMarkdown(image: GyazoImage): string {
+		const altText = image.alt_text && image.alt_text.trim() !== "" 
+			? image.alt_text 
+			: "";
+		return `[![${altText}](${image.url})](${image.permalink_url})`;
 	}
 }
 
@@ -331,7 +338,10 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 									onClick={(e) => {
 										e.stopPropagation();
 										if (!isLocked) {
-											const markdown = `![](${image.url})`;
+											const altText = image.alt_text && image.alt_text.trim() !== "" 
+												? image.alt_text 
+												: "";
+											const markdown = `[![${altText}](${image.url})](${image.permalink_url})`;
 											navigator.clipboard.writeText(
 												markdown
 											);

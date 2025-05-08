@@ -107,7 +107,10 @@ export default class GyazoPlugin extends Plugin {
 				const image = images.find((img) => img.image_id === imageId);
 
 				if (image) {
-					editor.replaceSelection(`![](${image.url})`);
+					const altText = image.alt_text && image.alt_text.trim() !== "" 
+						? image.alt_text 
+						: "";
+					editor.replaceSelection(`[![${altText}](${image.url})](${image.permalink_url})`);
 				}
 			}
 		});
