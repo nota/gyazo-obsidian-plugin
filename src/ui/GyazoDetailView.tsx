@@ -92,48 +92,61 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 			<div className="gyazo-detail-image-container">
 				<img src={image.url} alt="" className="gyazo-detail-image" />
 			</div>
-			
+
 			{/* Description as h2 element */}
-			{image.metadata?.desc && (
-				<h2 className="gyazo-image-description">{image.metadata.desc}</h2>
+			{image.desc && (
+				<h2 className="gyazo-image-description">{image.desc}</h2>
 			)}
-			
+
 			<div className="gyazo-metadata">
 				<div className="gyazo-metadata-item">
-					<div className="gyazo-metadata-label">{translations.uploadDate}</div>
-					<div className="gyazo-metadata-value">{formatDate(image.created_at)}</div>
+					<div className="gyazo-metadata-label">
+						{translations.uploadDate}
+					</div>
+					<div className="gyazo-metadata-value">
+						{formatDate(image.created_at)}
+					</div>
 				</div>
-				
+
 				{image.metadata?.app && (
 					<div className="gyazo-metadata-item">
-						<div className="gyazo-metadata-label">{translations.app}</div>
-						<div className="gyazo-metadata-value">{image.metadata.app}</div>
+						<div className="gyazo-metadata-label">
+							{translations.app}
+						</div>
+						<div className="gyazo-metadata-value">
+							{image.metadata.app}
+						</div>
 					</div>
 				)}
-				
-				<div className="gyazo-metadata-item">
-					<div className="gyazo-metadata-label">{translations.source}</div>
-					<div className="gyazo-metadata-value">
-						<a 
-							href="#" 
-							onClick={(e) => {
-								e.preventDefault();
-								window.open(image.permalink_url, "_blank");
-							}}
-							className="gyazo-source-link"
-						>
-							{image.metadata?.title || image.permalink_url}
-						</a>
+
+				{image.metadata?.url && (
+					<div className="gyazo-metadata-item">
+						<div className="gyazo-metadata-label">
+							{translations.source}
+						</div>
+						<div className="gyazo-metadata-value">
+							{image.metadata?.url ? (
+								<a
+									href="#"
+									onClick={(e) => {
+										e.preventDefault();
+										window.open(
+											image.metadata?.url,
+											"_blank"
+										);
+									}}
+									className="gyazo-source-link"
+								>
+									{image.metadata?.title}
+								</a>
+							) : (
+								<span>{image.metadata?.title}</span>
+							)}
+						</div>
 					</div>
-				</div>
-				
-				{/* OCR data - if available */}
-				<div className="gyazo-metadata-item">
-					<div className="gyazo-metadata-label">{translations.ocr}</div>
-					<div className="gyazo-metadata-value">
-						{image.metadata?.ocr?.description || "-"}
-					</div>
-				</div>
+				)}
+
+				{/* OCR data - not implemented yet */}
 			</div>
 		</div>
 	);
