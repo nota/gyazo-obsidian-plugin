@@ -90,7 +90,22 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 	return (
 		<div className="gyazo-detail-view">
 			<div className="gyazo-detail-image-container">
-				<img src={image.url} alt="" className="gyazo-detail-image" />
+				<a
+					href={`https://gyazo.com/${image.image_id}`}
+					onClick={(e) => {
+						e.preventDefault();
+						window.open(
+							`https://gyazo.com/${image.image_id}`,
+							"_blank"
+						);
+					}}
+				>
+					<img
+						src={image.url}
+						alt=""
+						className="gyazo-detail-image"
+					/>
+				</a>
 			</div>
 
 			{/* Description as h2 element */}
@@ -104,7 +119,19 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 						{translations.uploadDate}
 					</div>
 					<div className="gyazo-metadata-value">
-						{formatDate(image.created_at)}
+						<a
+							href={`https://gyazo.com/captures?jump=${image.image_id}`}
+							onClick={(e) => {
+								e.preventDefault();
+								window.open(
+									`https://gyazo.com/captures?jump=${image.image_id}`,
+									"_blank"
+								);
+							}}
+							className="gyazo-source-link"
+						>
+							{formatDate(image.created_at)}
+						</a>
 					</div>
 				</div>
 
@@ -127,7 +154,7 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 						<div className="gyazo-metadata-value">
 							{image.metadata?.url ? (
 								<a
-									href="#"
+									href={image.metadata.url}
 									onClick={(e) => {
 										e.preventDefault();
 										window.open(
