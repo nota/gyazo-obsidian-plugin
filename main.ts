@@ -7,6 +7,7 @@ import {
 	Plugin,
 	WorkspaceLeaf,
 } from "obsidian";
+import { generateGyazoMarkdown } from "./src/util/index";
 import {
 	GyazoPluginSettings,
 	DEFAULT_SETTINGS,
@@ -107,7 +108,7 @@ export default class GyazoPlugin extends Plugin {
 				const image = images.find((img) => img.image_id === imageId);
 
 				if (image) {
-					editor.replaceSelection(`![](${image.url})`);
+					editor.replaceSelection(generateGyazoMarkdown(image, this.settings));
 				}
 			}
 		});

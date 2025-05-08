@@ -75,5 +75,15 @@ export class GyazoSettingTab extends PluginSettingTab {
                     await this.plugin.saveSettings();
                     this.display(); // Refresh to update language
                 }));
+                
+        new Setting(containerEl)
+            .setName(t.includePermalinkLinksLabel)
+            .setDesc(t.includePermalinkLinksDesc)
+            .addToggle(toggle => toggle
+                .setValue(this.plugin.settings.includePermalinkLinks)
+                .onChange(async (value) => {
+                    this.plugin.settings.includePermalinkLinks = value;
+                    await this.plugin.saveSettings();
+                }));
     }
 }

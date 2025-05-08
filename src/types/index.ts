@@ -2,12 +2,14 @@ export interface GyazoPluginSettings {
 	accessToken: string;
 	language: "en" | "ja";
 	oauthState?: string;
+	includePermalinkLinks: boolean;
 }
 
 export const DEFAULT_SETTINGS: GyazoPluginSettings = {
 	accessToken: "",
 	language: "en",
 	oauthState: "",
+	includePermalinkLinks: true,
 };
 
 export interface GyazoImage {

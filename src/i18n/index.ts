@@ -7,6 +7,8 @@ export interface Translations {
 	openApiDashboardDesc: string;
 	languageLabel: string;
 	languageDesc: string;
+	includePermalinkLinksLabel: string;
+	includePermalinkLinksDesc: string;
 	save: string;
 	copyUrl: string;
 	openInBrowser: string;
@@ -55,6 +57,8 @@ export const translations: Record<"en" | "ja", Translations> = {
 			"Open Gyazo API dashboard to create a new application",
 		languageLabel: "Language",
 		languageDesc: "Select your preferred language",
+		includePermalinkLinksLabel: "Image with Link",
+		includePermalinkLinksDesc: "Add links to Gyazo pages when embedding images",
 		save: "Save",
 		copyUrl: "Copy URL",
 		openInBrowser: "Open in Browser",
@@ -102,6 +106,8 @@ export const translations: Record<"en" | "ja", Translations> = {
 			"Gyazo APIダッシュボードを開いて新しいアプリケーションを作成",
 		languageLabel: "言語",
 		languageDesc: "表示言語を選択してください",
+		includePermalinkLinksLabel: "リンクつき画像",
+		includePermalinkLinksDesc: "画像埋め込み時にGyazoページへのリンクを追加する",
 		save: "保存",
 		copyUrl: "URLをコピー",
 		openInBrowser: "ブラウザで開く",
