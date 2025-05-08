@@ -113,8 +113,8 @@ export const translations: Record<"en" | "ja", Translations> = {
 		uploadDate: "アップロード日時",
 		description: "説明",
 		title: "タイトル",
-		app: "アプリ",
-		source: "ソース",
+		app: "アプリケーション",
+		source: "キャプチャ元",
 		ocr: "OCR",
 		upgradeToProTitle: "Gyazo Proにアップグレード",
 		upgradeToProDesc:
