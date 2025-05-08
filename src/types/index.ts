@@ -15,7 +15,7 @@ export interface GyazoImage {
 	permalink_url: string;
 	thumb_url: string;
 	url: string;
-	type: "png" | "gif" | "jpg" | "png" | "webp" | "heic";
+	type: "png" | "gif" | "jpg" | "webp" | "heic";
 	created_at: string;
 	alt_text?: string;
 	ocr?: {
