@@ -10,6 +10,7 @@ export interface Translations {
 	save: string;
 	copyUrl: string;
 	openInBrowser: string;
+	copyMarkdown: string; // 追加: マークダウンをコピーするボタンのテキスト
 	copyMarkdownGif: string;
 	copyMarkdownMp4: string;
 	upgradeToProTitle: string;
@@ -49,6 +50,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		save: "Save",
 		copyUrl: "Copy URL",
 		openInBrowser: "Open in Browser",
+		copyMarkdown: "Copy Markdown",
 		copyMarkdownGif: "Copy GIF Markdown",
 		copyMarkdownMp4: "Copy MP4 Markdown",
 		upgradeToProTitle: "Upgrade to Gyazo Pro",
@@ -87,6 +89,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		save: "保存",
 		copyUrl: "URLをコピー",
 		openInBrowser: "ブラウザで開く",
+		copyMarkdown: "マークダウンをコピー",
 		copyMarkdownGif: "GIF形式でマークダウンをコピー",
 		copyMarkdownMp4: "MP4形式でマークダウンをコピー",
 		upgradeToProTitle: "Gyazo Proにアップグレード",

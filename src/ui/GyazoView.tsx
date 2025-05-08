@@ -173,6 +173,7 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 	const [showProModal, setShowProModal] = React.useState(false);
 	// クリックされた画像IDを管理する状態
 	const [clickedId, setClickedId] = React.useState<string | null>(null);
+	const [selectedImage, setSelectedImage] = React.useState<GyazoImage | null>(null);
 
 	// クリックフィードバックを処理する関数
 	const handleCardClick = (image: GyazoImage) => {
@@ -184,9 +185,12 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 		// クリックされた画像のIDを設定
 		setClickedId(image.image_id);
 
-		// フィードバックアニメーション後にIDをリセット
+		setSelectedImage(image);
+
+		// フィードバックアニメーション後にIDをリセット（クリックエフェクト用）
 		setTimeout(() => {
 			setClickedId(null);
+			// 画像のMarkdownをクリップボードにコピー
 			onImageClick(image);
 		}, 150);
 	};
@@ -254,6 +258,15 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 
 	const displayImages = images;
 
+	const formatDate = (dateString: string) => {
+		try {
+			const date = new Date(dateString);
+			return date.toLocaleString();
+		} catch (e) {
+			return dateString;
+		}
+	};
+
 	return (
 		<div className="gyazo-gallery">
 			<div className="gyazo-header">
@@ -271,18 +284,21 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 					{translations.refreshButton}
 				</button>
 			</div>
+			
+			{/* グリッド表示 - 上部 */}
 			<div className="gyazo-grid">
 				{displayImages.map((image, index) => {
 					const isLocked =
 						!image.image_id || !image.permalink_url || !image.url;
 					const isClicked = clickedId === image.image_id;
+					const isSelected = selectedImage && selectedImage.image_id === image.image_id;
 
 					return (
 						<div
 							key={image.image_id || `locked-${index}`}
 							className={`gyazo-card ${
 								isLocked ? "gyazo-locked" : ""
-							} ${isClicked ? "clicked" : ""}`}
+							} ${isClicked ? "clicked" : ""} ${isSelected ? "selected" : ""}`}
 							onClick={() => handleCardClick(image)}
 							onContextMenu={(e) => {
 								if (isLocked) {
@@ -331,6 +347,92 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 					);
 				})}
 			</div>
+			
+			{/* 詳細表示 - 下部 */}
+			{selectedImage && (
+				<div className="gyazo-detail-view">
+					<div className="gyazo-detail-image-container">
+						<img src={selectedImage.url} alt="" className="gyazo-detail-image" />
+					</div>
+					<div className="gyazo-metadata">
+						<div className="gyazo-metadata-header">
+							<div className="gyazo-created-at">
+								<span className="gyazo-metadata-label">アップロード日時:</span> 
+								{formatDate(selectedImage.created_at)}
+							</div>
+							<div className="gyazo-metadata-actions">
+								<button 
+									className="gyazo-action-button"
+									onClick={() => {
+										const markdown = `![](${selectedImage.url})`;
+										navigator.clipboard.writeText(markdown);
+										// 成功メッセージを表示
+										const toast = document.createElement("div");
+										toast.className = "gyazo-toast";
+										toast.textContent = translations.imageCopiedToClipboard;
+										document.body.appendChild(toast);
+										setTimeout(() => {
+											toast.classList.add("show");
+										}, 10);
+										setTimeout(() => {
+											toast.classList.remove("show");
+											setTimeout(() => {
+												document.body.removeChild(toast);
+											}, 300);
+										}, 2000);
+									}}
+									title={translations.copyMarkdown}
+								>
+									<svg viewBox="0 0 24 24" width="16" height="16">
+										<path
+											fill="currentColor"
+											d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"
+										/>
+									</svg>
+								</button>
+								<button 
+									className="gyazo-action-button"
+									onClick={() => window.open(selectedImage.permalink_url, "_blank")}
+									title={translations.openInBrowser}
+								>
+									<svg viewBox="0 0 24 24" width="16" height="16">
+										<path
+											fill="currentColor"
+											d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"
+										/>
+									</svg>
+								</button>
+							</div>
+						</div>
+						
+						{selectedImage.metadata?.desc && (
+							<div className="gyazo-desc">
+								<span className="gyazo-metadata-label">説明:</span> 
+								{selectedImage.metadata.desc}
+							</div>
+						)}
+						
+						{selectedImage.metadata?.title && (
+							<div className="gyazo-title">
+								<span className="gyazo-metadata-label">タイトル:</span> 
+								{selectedImage.metadata.title}
+							</div>
+						)}
+						
+						{selectedImage.metadata?.app && (
+							<div className="gyazo-app">
+								<span className="gyazo-metadata-label">アプリ:</span> 
+								{selectedImage.metadata.app}
+							</div>
+						)}
+						
+						<div className="gyazo-type">
+							<span className="gyazo-metadata-label">タイプ:</span> 
+							{selectedImage.type.toUpperCase()}
+						</div>
+					</div>
+				</div>
+			)}
 
 			{showProModal && (
 				<div className="gyazo-pro-modal">

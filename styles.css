@@ -8,6 +8,13 @@ Gyazo Plugin Styles
 	height: 100%;
 }
 
+/* スプリットビュー用のスタイル */
+.gyazo-gallery {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
 .gyazo-header {
 	display: flex;
 	justify-content: flex-end;
@@ -30,6 +37,9 @@ Gyazo Plugin Styles
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
 	gap: 10px;
+	max-height: 50%;
+	overflow-y: auto;
+	margin-bottom: 15px;
 }
 
 .gyazo-card {
@@ -227,4 +237,80 @@ Gyazo Plugin Styles
 
 .gyazo-login-button {
 	margin-bottom: 4px;
+}
+
+/* 詳細表示用のスタイル */
+.gyazo-detail-view {
+	display: flex;
+	flex-direction: column;
+	background-color: var(--background-primary);
+	border-radius: 8px;
+	padding: 15px;
+	margin-top: 10px;
+	flex-grow: 1;
+	overflow-y: auto;
+	border: 1px solid var(--background-modifier-border);
+}
+
+.gyazo-detail-image-container {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 15px;
+	max-height: 300px;
+	overflow: hidden;
+}
+
+.gyazo-detail-image {
+	max-width: 100%;
+	max-height: 300px;
+	object-fit: contain;
+	border-radius: 4px;
+}
+
+.gyazo-metadata {
+	padding: 10px;
+	background-color: var(--background-secondary);
+	border-radius: 6px;
+}
+
+.gyazo-metadata-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 10px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.gyazo-metadata-actions {
+	display: flex;
+	gap: 8px;
+}
+
+.gyazo-action-button {
+	background-color: var(--interactive-accent);
+	color: var(--text-on-accent);
+	border: none;
+	border-radius: 4px;
+	width: 30px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.gyazo-metadata-label {
+	font-weight: bold;
+	margin-right: 5px;
+	color: var(--text-muted);
+}
+
+.gyazo-created-at, .gyazo-desc, .gyazo-title, .gyazo-app, .gyazo-type {
+	margin-bottom: 8px;
+}
+
+/* 選択されたカードのスタイル */
+.gyazo-card.selected {
+	border: 2px solid var(--interactive-accent);
 }
