@@ -8,6 +8,24 @@ Gyazo Plugin Styles
 	height: 100%;
 }
 
+.gyazo-header {
+	display: flex;
+	justify-content: flex-end;
+	margin-bottom: 10px;
+}
+
+.gyazo-refresh-button {
+	background-color: var(--interactive-accent);
+	color: var(--text-on-accent);
+	padding: 4px 8px;
+	border-radius: 4px;
+	cursor: pointer;
+	font-size: 0.8em;
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
 .gyazo-grid {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
