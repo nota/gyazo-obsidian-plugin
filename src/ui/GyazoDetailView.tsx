@@ -91,13 +91,10 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 		<div className="gyazo-detail-view">
 			<div className="gyazo-detail-image-container">
 				<a
-					href={`https://gyazo.com/${image.image_id}`}
+					href={image.permalink_url}
 					onClick={(e) => {
 						e.preventDefault();
-						window.open(
-							`https://gyazo.com/${image.image_id}`,
-							"_blank"
-						);
+						window.open(image.permalink_url, "_blank");
 					}}
 				>
 					<img
