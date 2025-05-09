@@ -309,6 +309,7 @@ Gyazo Plugin Styles
 
 .gyazo-metadata-value {
 	word-break: break-word;
+	white-space: break-spaces;
 }
 
 .gyazo-title-desc-container {
