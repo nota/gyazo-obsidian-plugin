@@ -1,5 +1,7 @@
 # Obsidian Gyazo Plugin
 
+![Image from Gyazo](https://t.gyazo.com/teams/nota/c3c3b3f2f0ce08a659a18e89639b5354.png)
+
 This plugin integrates Gyazo with Obsidian, allowing you to view and embed your Gyazo captures directly in your notes.
 
 ## Features
