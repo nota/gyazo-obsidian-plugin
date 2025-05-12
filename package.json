@@ -15,8 +15,8 @@
 		"image",
 		"capture"
 	],
-	"author": "Devin AI",
-	"license": "MIT",
+	"author": "Helpfeel Inc.",
+	"license": "GPL-3.0",
 	"devDependencies": {
 		"@types/node": "^16.11.6",
 		"@types/react": "^18.2.0",

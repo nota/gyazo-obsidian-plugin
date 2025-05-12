@@ -1,6 +1,5 @@
 import {
 	addIcon,
-	App,
 	Editor,
 	MarkdownView,
 	Menu,

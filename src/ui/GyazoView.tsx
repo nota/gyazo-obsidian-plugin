@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
 import { generateGyazoMarkdown } from "../util/index";
-import { GyazoPluginSettings } from "../types/index";
 import GyazoPlugin from "../../main";
 import { Editor, ItemView, MenuItem, WorkspaceLeaf } from "obsidian";
 import { GYAZO_DETAIL_VIEW_TYPE } from "./GyazoDetailView";
