@@ -29,7 +29,7 @@ This plugin integrates Gyazo with Obsidian, allowing you to view and embed your 
 
 ### Viewing Captures
 
-1. Click the camera icon in the left ribbon to open the Gyazo captures view
+1. Click Gyazo icon in the left ribbon to open the Gyazo captures view
 2. Your captures will be displayed as a grid of thumbnails in the right sidebar
 
 ### Embedding Captures
