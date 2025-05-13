@@ -72,7 +72,12 @@ export default class GyazoPlugin extends Plugin {
 
             const editor = view.editor;
 
-            if (evt.dataTransfer?.getData('gyazo/image')) {
+            if (evt.dataTransfer?.types.includes('text/plain') && 
+                evt.dataTransfer.getData('gyazo/image')) {
+                const markdownCode = evt.dataTransfer.getData('text/plain');
+                editor.replaceSelection(markdownCode);
+            } 
+            else if (evt.dataTransfer?.getData('gyazo/image')) {
                 const imageId = evt.dataTransfer.getData('gyazo/image');
                 const images = await this.getGyazoImages();
                 const image = images.find(img => img.image_id === imageId);

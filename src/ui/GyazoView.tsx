@@ -270,18 +270,26 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 					const isClicked = clickedId === image.image_id;
 
 					return (
-						<a
+						<div
 							key={image.image_id || `locked-${index}`}
 							className={`gyazo-card ${
 								isLocked ? "gyazo-locked" : ""
 							} ${isClicked ? "clicked" : ""}`}
-							href={isLocked ? undefined : image.url}
-							onClick={(e) => {
-								e.preventDefault();
-								handleCardClick(image);
+							draggable={!isLocked}
+							onDragStart={(e) => {
+								if (!isLocked && image.image_id) {
+									e.dataTransfer.setData('gyazo/image', image.image_id);
+									
+									const markdownCode = image.type === "mp4"
+										? `<video src="${image.url}" controls></video>`
+										: `![](${image.url})`;
+									e.dataTransfer.setData('text/plain', markdownCode);
+									
+									e.stopPropagation();
+								}
 							}}
+							onClick={() => handleCardClick(image)}
 							onContextMenu={(e) => {
-								e.preventDefault();
 								if (isLocked) {
 									setShowProModal(true);
 								} else {
@@ -327,7 +335,7 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 									</svg>
 								</div>
 							</div>
-						</a>
+						</div>
 					);
 				})}
 			</div>
