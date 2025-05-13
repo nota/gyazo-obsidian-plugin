@@ -275,6 +275,12 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 							className={`gyazo-card ${
 								isLocked ? "gyazo-locked" : ""
 							} ${isClicked ? "clicked" : ""}`}
+							draggable={!isLocked}
+							onDragStart={(e) => {
+								if (!isLocked && image.image_id) {
+									e.dataTransfer.setData('gyazo/image', image.image_id);
+								}
+							}}
 							onClick={() => handleCardClick(image)}
 							onContextMenu={(e) => {
 								if (isLocked) {
