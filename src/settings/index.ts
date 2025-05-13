@@ -1,6 +1,5 @@
 import { App, Notice, PluginSettingTab, Setting } from 'obsidian';
 import GyazoPlugin from '../../main';
-import { translations } from '../i18n/index';
 import { GyazoApi } from '../api/index';
 
 export class GyazoSettingTab extends PluginSettingTab {
