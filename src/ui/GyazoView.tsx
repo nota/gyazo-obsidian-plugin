@@ -278,14 +278,22 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 							draggable={!isLocked}
 							onDragStart={(e) => {
 								if (!isLocked && image.image_id) {
+									e.preventDefault();
+									e.stopPropagation();
+									
+									e.dataTransfer.effectAllowed = 'copy';
+									
+									const imgElements = e.currentTarget.querySelectorAll('img');
+									imgElements.forEach(img => {
+										img.draggable = false;
+									});
+									
 									e.dataTransfer.setData('gyazo/image', image.image_id);
 									
 									const markdownCode = image.type === "mp4"
 										? `<video src="${image.url}" controls></video>`
 										: `![](${image.url})`;
 									e.dataTransfer.setData('text/plain', markdownCode);
-									
-									e.stopPropagation();
 								}
 							}}
 							onClick={() => handleCardClick(image)}
