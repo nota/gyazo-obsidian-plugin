@@ -18,7 +18,9 @@ This plugin integrates Gyazo with Obsidian, allowing you to view and embed your 
 
 1. Download the latest release from the Releases section
 2. Extract the zip file in your Obsidian vault's `.obsidian/plugins/` directory
-3. Enable the plugin in Obsidian settings
+3. Run `npm ci` to install dependencies
+4. Run `npm run build` to compile the plugin
+5. Enable the plugin in Obsidian settings
 
 ## Usage
 
