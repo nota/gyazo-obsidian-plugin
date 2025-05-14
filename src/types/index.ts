@@ -3,6 +3,8 @@ export interface GyazoPluginSettings {
 	language: "en" | "ja";
 	oauthState?: string;
 	includePermalinkLinks: boolean;
+	enableImageWidth: boolean;
+	imageWidth: number;
 }
 
 export const DEFAULT_SETTINGS: GyazoPluginSettings = {
@@ -10,6 +12,8 @@ export const DEFAULT_SETTINGS: GyazoPluginSettings = {
 	language: "en",
 	oauthState: "",
 	includePermalinkLinks: true,
+	enableImageWidth: false,
+	imageWidth: 250,
 };
 
 export interface GyazoImage {

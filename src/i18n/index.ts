@@ -9,6 +9,8 @@ export interface Translations {
 	languageDesc: string;
 	includePermalinkLinksLabel: string;
 	includePermalinkLinksDesc: string;
+	imageWidthLabel: string;
+	imageWidthDesc: string;
 	save: string;
 	copyUrl: string;
 	openInBrowser: string;
@@ -58,7 +60,10 @@ export const translations: Record<"en" | "ja", Translations> = {
 		languageLabel: "Language",
 		languageDesc: "Select your preferred language",
 		includePermalinkLinksLabel: "Image with Link",
-		includePermalinkLinksDesc: "Add links to Gyazo pages when embedding images",
+		includePermalinkLinksDesc:
+			"Add links to Gyazo pages when embedding images",
+		imageWidthLabel: "Image Width",
+		imageWidthDesc: "Set default width for embedded images",
 		save: "Save",
 		copyUrl: "Copy URL",
 		openInBrowser: "Open in Browser",
@@ -90,9 +95,11 @@ export const translations: Record<"en" | "ja", Translations> = {
 		imageCopiedToClipboard: "Image copied to clipboard",
 		imageOpenedInBrowser: "Image opened in browser",
 		openSettings: "Open Plugin Settings",
-		openSettingsDesc: "Configure your Gyazo API access token in the plugin settings",
+		openSettingsDesc:
+			"Configure your Gyazo API access token in the plugin settings",
 		downloadGyazo: "Download Gyazo",
-		downloadGyazoDesc: "New to Gyazo? Download and install it to get started",
+		downloadGyazoDesc:
+			"New to Gyazo? Download and install it to get started",
 		noAccessToken: "Please log in or sign up to start using Gyazo",
 		refreshButton: "Refresh",
 	},
@@ -107,7 +114,10 @@ export const translations: Record<"en" | "ja", Translations> = {
 		languageLabel: "言語",
 		languageDesc: "表示言語を選択してください",
 		includePermalinkLinksLabel: "リンクつき画像",
-		includePermalinkLinksDesc: "画像埋め込み時にGyazoページへのリンクを追加する",
+		includePermalinkLinksDesc:
+			"画像埋め込み時にGyazoページへのリンクを追加する",
+		imageWidthLabel: "画像の幅",
+		imageWidthDesc: "埋め込み画像のデフォルト幅を設定",
 		save: "保存",
 		copyUrl: "URLをコピー",
 		openInBrowser: "ブラウザで開く",
@@ -140,10 +150,13 @@ export const translations: Record<"en" | "ja", Translations> = {
 		imageCopiedToClipboard: "画像をクリップボードにコピーしました",
 		imageOpenedInBrowser: "ブラウザで画像が開かれました",
 		openSettings: "プラグイン設定を開く",
-		openSettingsDesc: "プラグイン設定でGyazo APIアクセストークンを設定してください",
+		openSettingsDesc:
+			"プラグイン設定でGyazo APIアクセストークンを設定してください",
 		downloadGyazo: "Gyazoをダウンロード",
-		downloadGyazoDesc: "Gyazoを初めて使用する場合は、ダウンロードしてインストールしてください",
-		noAccessToken: "Gyazoを使用するにはログインまたはサインアップが必要です",
+		downloadGyazoDesc:
+			"Gyazoを初めて使用する場合は、ダウンロードしてインストールしてください",
+		noAccessToken:
+			"Gyazoを使用するにはログインまたはサインアップが必要です",
 		refreshButton: "更新",
 	},
 };

@@ -74,7 +74,7 @@ export class GyazoSettingTab extends PluginSettingTab {
                     await this.plugin.saveSettings();
                     this.display(); // Refresh to update language
                 }));
-                
+
         new Setting(containerEl)
             .setName(t.includePermalinkLinksLabel)
             .setDesc(t.includePermalinkLinksDesc)
@@ -84,5 +84,29 @@ export class GyazoSettingTab extends PluginSettingTab {
                     this.plugin.settings.includePermalinkLinks = value;
                     await this.plugin.saveSettings();
                 }));
+
+        const imageWidthSetting = new Setting(containerEl)
+        .setName(t.imageWidthLabel)
+        .setDesc(t.imageWidthDesc)
+        .addText(text => text
+            .setPlaceholder('250')
+            .setValue(String(this.plugin.settings.imageWidth))
+            .onChange(async (value) => {
+                const width = parseInt(value);
+                if (!isNaN(width) && width > 0) {
+                    this.plugin.settings.imageWidth = width;
+                    await this.plugin.saveSettings();
+                    this.display(); // Refresh to update UI
+                }
+            })
+        )
+
+        imageWidthSetting.addToggle(toggle => toggle
+            .setValue(this.plugin.settings.enableImageWidth)
+            .onChange(async (value) => {
+                this.plugin.settings.enableImageWidth = value;
+                await this.plugin.saveSettings();
+            })
+        );
     }
 }
