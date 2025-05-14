@@ -96,11 +96,13 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 						e.preventDefault();
 						window.open(image.permalink_url, "_blank");
 					}}
+					draggable={false}
 				>
 					<img
 						src={image.url}
 						alt=""
 						className="gyazo-detail-image"
+						draggable={false}
 					/>
 				</a>
 			</div>
