@@ -11,7 +11,7 @@ export function generateGyazoMarkdown(
 	settings?: GyazoPluginSettings
 ): string {
 	const altText = image.alt_text ?? "";
-	const imageWidth = settings?.enableImageWidth ? settings?.imageWidth : 0;
+	const imageWidth = settings?.enableImageWidth ? settings.imageWidth : 0;
 
 	const imageEmbeddingContentArray = [];
 	if (altText) {
