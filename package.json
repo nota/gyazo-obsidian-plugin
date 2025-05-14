@@ -18,7 +18,7 @@
 	"author": "Helpfeel Inc.",
 	"license": "GPL-3.0",
 	"devDependencies": {
-		"@types/node": "^16.11.6",
+		"@types/node": "^22.0.0",
 		"@types/react": "^18.2.0",
 		"@types/react-dom": "^18.2.0",
 		"@typescript-eslint/eslint-plugin": "5.62.0",
