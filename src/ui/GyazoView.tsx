@@ -85,10 +85,12 @@ export class GyazoView extends ItemView {
 			);
 		} else {
 			// エディタがない場合はクリップボードにコピー
+			const widthStr = this.plugin.settings.enableImageWidth ? 
+				`${this.plugin.settings.imageWidth}` : '';
 			const markdown =
 				image.type === "mp4"
 					? `<video src="${image.url}" controls></video>`
-					: `![](${image.url})`;
+					: `![${widthStr}](${image.url})`;
 			navigator.clipboard.writeText(markdown);
 			// コピー成功メッセージを表示
 			this.showToast(
@@ -151,7 +153,10 @@ export class GyazoView extends ItemView {
 				item.setTitle(t.copyMarkdownGif)
 					.setIcon("clipboard-copy")
 					.onClick(() => {
-						const markdown = `![](${image.url.replace(
+						const plugin = this.plugin;
+						const widthStr = plugin.settings.enableImageWidth ? 
+							`${plugin.settings.imageWidth}` : '';
+						const markdown = `![${widthStr}](${image.url.replace(
 							".mp4",
 							".gif"
 						)})`;
@@ -178,7 +183,9 @@ export class GyazoView extends ItemView {
 				`<video src="${image.url}" controls></video>`
 			);
 		} else {
-			editor.replaceSelection(`![](${image.url})`);
+			const widthStr = this.plugin.settings.enableImageWidth ? 
+				`${this.plugin.settings.imageWidth}` : '';
+			editor.replaceSelection(`![${widthStr}](${image.url})`);
 		}
 	}
 }
@@ -298,10 +305,13 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 									onClick={(e) => {
 										e.stopPropagation();
 										if (!isLocked) {
+											const plugin = (window as any).gyazoPlugin;
+											const widthStr = plugin && plugin.settings.enableImageWidth ? 
+												`${plugin.settings.imageWidth}` : '';
 											const markdown =
 												image.type === "mp4"
 													? `<video src="${image.url}" controls></video>`
-													: `![](${image.url})`;
+													: `![${widthStr}](${image.url})`;
 											navigator.clipboard.writeText(
 												markdown
 											);

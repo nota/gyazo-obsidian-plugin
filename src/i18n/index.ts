@@ -7,6 +7,8 @@ export interface Translations {
 	openApiDashboardDesc: string;
 	languageLabel: string;
 	languageDesc: string;
+	imageWidthLabel: string;
+	imageWidthDesc: string;
 	save: string;
 	copyUrl: string;
 	openInBrowser: string;
@@ -39,6 +41,8 @@ export const translations: Record<"en" | "ja", Translations> = {
 			"Open Gyazo OAuth applications page to get your access token",
 		languageLabel: "Language",
 		languageDesc: "Select your preferred language",
+		imageWidthLabel: "Image Width",
+		imageWidthDesc: "Set default width for embedded images",
 		save: "Save",
 		copyUrl: "Copy URL",
 		openInBrowser: "Open in Browser",
@@ -70,6 +74,8 @@ export const translations: Record<"en" | "ja", Translations> = {
 			"Gyazo OAuthアプリケーションページを開いてアクセストークンを取得する",
 		languageLabel: "言語",
 		languageDesc: "表示言語を選択してください",
+		imageWidthLabel: "画像の幅",
+		imageWidthDesc: "埋め込み画像のデフォルト幅を設定",
 		save: "保存",
 		copyUrl: "URLをコピー",
 		openInBrowser: "ブラウザで開く",
