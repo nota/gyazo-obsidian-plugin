@@ -2,12 +2,16 @@ export interface GyazoPluginSettings {
   accessToken: string;
   language: 'en' | 'ja';
   oauthState?: string;
+  enableImageWidth: boolean;
+  imageWidth: number;
 }
 
 export const DEFAULT_SETTINGS: GyazoPluginSettings = {
   accessToken: '',
   language: 'en',
-  oauthState: ''
+  oauthState: '',
+  enableImageWidth: false,
+  imageWidth: 250
 };
 
 export interface GyazoImage {
