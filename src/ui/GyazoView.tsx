@@ -318,8 +318,28 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 								}
 							}}
 						>
-							<div className="gyazo-thumbnail">
-								<img src={image.thumb_url} alt="" />
+							<div
+								className="gyazo-thumbnail"
+								style={{
+									backgroundImage: `url(${image.thumb_url})`,
+									backgroundSize: "cover",
+								}}
+								role="img"
+								draggable={true}
+								onDragStart={(e) => {
+									if (!isLocked) {
+										e.dataTransfer.setData(
+											"text/plain",
+											generateGyazoMarkdown(
+												image,
+												plugin.settings
+											)
+										);
+									} else {
+										setShowProModal(true);
+									}
+								}}
+							>
 								{image.type !== "png" && (
 									<div className="gyazo-type-badge">
 										{image.type.toUpperCase()}
