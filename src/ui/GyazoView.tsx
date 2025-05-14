@@ -4,7 +4,7 @@ import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
 import { generateGyazoMarkdown } from "../util/index";
 import GyazoPlugin from "../../main";
-import { Editor, ItemView, MenuItem, WorkspaceLeaf } from "obsidian";
+import { ItemView, MenuItem, WorkspaceLeaf } from "obsidian";
 import { GYAZO_DETAIL_VIEW_TYPE } from "./GyazoDetailView";
 
 export const GYAZO_VIEW_TYPE = "gyazo-view";
@@ -80,6 +80,7 @@ export class GyazoView extends ItemView {
 				error={this.error}
 				translations={this.plugin.getTranslation()}
 				onImageClick={this.handleImageClick.bind(this)}
+				onCopyButtonClick={this.onCopyButtonClick.bind(this)}
 				onContextMenu={this.handleContextMenu.bind(this)}
 				onRefresh={this.refreshImages.bind(this)}
 			/>
@@ -90,7 +91,9 @@ export class GyazoView extends ItemView {
 
 	private handleImageClick(image: GyazoImage): void {
 		this.openDetailView(image);
-		
+	}
+
+	private onCopyButtonClick(image: GyazoImage): void {
 		// Markdown を生成
 		const markdown = generateGyazoMarkdown(image, this.plugin.settings);
 
@@ -171,10 +174,6 @@ export class GyazoView extends ItemView {
 
 		menu.showAtMouseEvent(event.nativeEvent);
 	}
-
-	private embedImage(editor: Editor, image: GyazoImage): void {
-		editor.replaceSelection(generateGyazoMarkdown(image, this.plugin.settings));
-	}
 }
 
 interface GyazoGalleryProps {
@@ -183,6 +182,7 @@ interface GyazoGalleryProps {
 	error: string | null;
 	translations: Translations;
 	onImageClick: (image: GyazoImage) => void;
+	onCopyButtonClick: (image: GyazoImage) => void;
 	onContextMenu: (event: React.MouseEvent, image: GyazoImage) => void;
 	onRefresh: () => void;
 }
@@ -193,6 +193,7 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 	error,
 	translations,
 	onImageClick,
+	onCopyButtonClick,
 	onContextMenu,
 	onRefresh,
 }) => {
@@ -352,10 +353,7 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
 									onClick={(e) => {
 										e.stopPropagation();
 										if (!isLocked) {
-											const markdown = generateGyazoMarkdown(image, window.gyazoPlugin.settings);
-											navigator.clipboard.writeText(
-												markdown
-											);
+											onCopyButtonClick(image);
 										} else {
 											setShowProModal(true);
 										}
