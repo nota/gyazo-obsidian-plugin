@@ -26,11 +26,11 @@ export class GyazoSettingTab extends PluginSettingTab {
 				this.plugin.settings.accessToken.substring(0, 4) +
 				"..." +
 				this.plugin.settings.accessToken.substring(
-					this.plugin.settings.accessToken.length - 4
+					this.plugin.settings.accessToken.length - 4,
 				);
 
 			tokenSetting.addText((text) =>
-				text.setValue(maskedToken).setDisabled(true)
+				text.setValue(maskedToken).setDisabled(true),
 			);
 
 			tokenSetting.addButton((button) =>
@@ -43,7 +43,7 @@ export class GyazoSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 						new Notice(t.tokenRevoked);
 						this.display(); // Refresh the settings view
-					})
+					}),
 			);
 		} else {
 			tokenSetting.addText((text) =>
@@ -53,7 +53,7 @@ export class GyazoSettingTab extends PluginSettingTab {
 					.onChange(async (value) => {
 						this.plugin.settings.accessToken = value;
 						await this.plugin.saveSettings();
-					})
+					}),
 			);
 
 			tokenSetting.addButton((button) =>
@@ -61,11 +61,8 @@ export class GyazoSettingTab extends PluginSettingTab {
 					.setButtonText(t.openApiDashboard)
 					.setTooltip(t.openApiDashboardDesc)
 					.onClick(() => {
-						window.open(
-							"https://gyazo.com/oauth/applications",
-							"_blank"
-						);
-					})
+						window.open("https://gyazo.com/oauth/applications", "_blank");
+					}),
 			);
 		}
 
@@ -81,7 +78,7 @@ export class GyazoSettingTab extends PluginSettingTab {
 						this.plugin.settings.language = value;
 						await this.plugin.saveSettings();
 						this.display(); // Refresh to update language
-					})
+					}),
 			);
 
 		new Setting(containerEl)
@@ -93,7 +90,7 @@ export class GyazoSettingTab extends PluginSettingTab {
 					.onChange(async (value) => {
 						this.plugin.settings.includePermalinkLinks = value;
 						await this.plugin.saveSettings();
-					})
+					}),
 			);
 
 		const imageWidthSetting = new Setting(containerEl)
@@ -110,7 +107,7 @@ export class GyazoSettingTab extends PluginSettingTab {
 							await this.plugin.saveSettings();
 							this.display(); // Refresh to update UI
 						}
-					})
+					}),
 			);
 
 		imageWidthSetting.addToggle((toggle) =>
@@ -119,7 +116,7 @@ export class GyazoSettingTab extends PluginSettingTab {
 				.onChange(async (value) => {
 					this.plugin.settings.enableImageWidth = value;
 					await this.plugin.saveSettings();
-				})
+				}),
 		);
 	}
 }

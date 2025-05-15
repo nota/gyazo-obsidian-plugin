@@ -72,9 +72,7 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 }) => {
 	if (!image) {
 		return (
-			<div className="gyazo-detail-empty">
-				{translations.selectImageToView}
-			</div>
+			<div className="gyazo-detail-empty">{translations.selectImageToView}</div>
 		);
 	}
 
@@ -108,16 +106,12 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 			</div>
 
 			{image.metadata.desc && (
-				<h2 className="gyazo-image-description">
-					{image.metadata.desc}
-				</h2>
+				<h2 className="gyazo-image-description">{image.metadata.desc}</h2>
 			)}
 
 			<div className="gyazo-metadata">
 				<div className="gyazo-metadata-item">
-					<div className="gyazo-metadata-label">
-						{translations.uploadDate}
-					</div>
+					<div className="gyazo-metadata-label">{translations.uploadDate}</div>
 					<div className="gyazo-metadata-value">
 						<a
 							href={`https://gyazo.com/captures?jump=${image.image_id}`}
@@ -137,30 +131,21 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 
 				{image.metadata?.app && (
 					<div className="gyazo-metadata-item">
-						<div className="gyazo-metadata-label">
-							{translations.app}
-						</div>
-						<div className="gyazo-metadata-value">
-							{image.metadata.app}
-						</div>
+						<div className="gyazo-metadata-label">{translations.app}</div>
+						<div className="gyazo-metadata-value">{image.metadata.app}</div>
 					</div>
 				)}
 
 				{image.metadata?.url && (
 					<div className="gyazo-metadata-item">
-						<div className="gyazo-metadata-label">
-							{translations.source}
-						</div>
+						<div className="gyazo-metadata-label">{translations.source}</div>
 						<div className="gyazo-metadata-value">
 							{image.metadata?.url ? (
 								<a
 									href={image.metadata.url}
 									onClick={(e) => {
 										e.preventDefault();
-										window.open(
-											image.metadata?.url,
-											"_blank",
-										);
+										window.open(image.metadata?.url, "_blank");
 									}}
 									className="gyazo-source-link"
 								>
@@ -175,12 +160,8 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 
 				{image.ocr?.description && (
 					<div className="gyazo-metadata-item">
-						<div className="gyazo-metadata-label">
-							{translations.ocr}
-						</div>
-						<div className="gyazo-metadata-value">
-							{image.ocr.description}
-						</div>
+						<div className="gyazo-metadata-label">{translations.ocr}</div>
+						<div className="gyazo-metadata-value">{image.ocr.description}</div>
 					</div>
 				)}
 			</div>

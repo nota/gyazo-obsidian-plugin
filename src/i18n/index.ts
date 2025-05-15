@@ -60,8 +60,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		languageLabel: "Language",
 		languageDesc: "Select your preferred language",
 		includePermalinkLinksLabel: "Image with Link",
-		includePermalinkLinksDesc:
-			"Add links to Gyazo pages when embedding images",
+		includePermalinkLinksDesc: "Add links to Gyazo pages when embedding images",
 		imageWidthLabel: "Image Width",
 		imageWidthDesc: "Set default width for embedded images",
 		save: "Save",
@@ -98,8 +97,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		openSettingsDesc:
 			"Configure your Gyazo API access token in the plugin settings",
 		downloadGyazo: "Download Gyazo",
-		downloadGyazoDesc:
-			"New to Gyazo? Download and install it to get started",
+		downloadGyazoDesc: "New to Gyazo? Download and install it to get started",
 		noAccessToken: "Please log in or sign up to start using Gyazo",
 		refreshButton: "Refresh",
 	},
@@ -155,8 +153,7 @@ export const translations: Record<"en" | "ja", Translations> = {
 		downloadGyazo: "Gyazoをダウンロード",
 		downloadGyazoDesc:
 			"Gyazoを初めて使用する場合は、ダウンロードしてインストールしてください",
-		noAccessToken:
-			"Gyazoを使用するにはログインまたはサインアップが必要です",
+		noAccessToken: "Gyazoを使用するにはログインまたはサインアップが必要です",
 		refreshButton: "更新",
 	},
 };

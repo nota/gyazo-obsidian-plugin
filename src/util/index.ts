@@ -8,7 +8,7 @@ import { GyazoImage, GyazoPluginSettings } from "../types/index";
  */
 export function generateGyazoMarkdown(
 	image: GyazoImage,
-	settings?: GyazoPluginSettings
+	settings?: GyazoPluginSettings,
 ): string {
 	const altText = image.alt_text ?? "";
 	const imageWidth = settings?.enableImageWidth ? settings.imageWidth : 0;
