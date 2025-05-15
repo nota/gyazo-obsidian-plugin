@@ -3,341 +3,341 @@ Gyazo Plugin Styles
 */
 
 .gyazo-view-container {
-	padding: 10px;
-	overflow-y: auto;
-	height: 100%;
+  padding: 10px;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .gyazo-header {
-	display: flex;
-	justify-content: flex-end;
-	margin-bottom: 8px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 8px;
 }
 
 .gyazo-refresh-button {
-	background-color: var(--interactive-accent);
-	color: var(--text-on-accent);
-	padding: 4px 8px;
-	border-radius: 4px;
-	cursor: pointer;
-	font-size: 0.8em;
-	display: flex;
-	align-items: center;
-	gap: 4px;
+  background-color: var(--interactive-accent);
+  color: var(--text-on-accent);
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .gyazo-grid {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-	gap: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 10px;
 }
 
 .gyazo-card {
-	position: relative;
-	border-radius: 4px;
-	overflow: hidden;
-	cursor: pointer;
-	transition:
-		transform 0.2s ease,
-		box-shadow 0.2s ease;
-	background-color: var(--background-secondary);
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  background-color: var(--background-secondary);
 }
 
 .gyazo-card:hover {
-	transform: translateY(-2px);
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .gyazo-card:active {
-	transform: translateY(0);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 /* フィードバックを追加 */
 .gyazo-card.clicked {
-	animation: pulse 0.3s ease-in-out;
+  animation: pulse 0.3s ease-in-out;
 }
 
 @keyframes pulse {
-	0% {
-		opacity: 1;
-	}
-	50% {
-		opacity: 0.7;
-	}
-	100% {
-		opacity: 1;
-	}
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .gyazo-thumbnail {
-	position: relative;
-	width: 100%;
-	padding-bottom: 75%; /* 4:3 aspect ratio */
-	overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding-bottom: 75%; /* 4:3 aspect ratio */
+  overflow: hidden;
 }
 
 .gyazo-thumbnail img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .gyazo-type-badge {
-	position: absolute;
-	bottom: 5px;
-	right: 5px;
-	background-color: rgba(0, 0, 0, 0.6);
-	color: white;
-	font-size: 10px;
-	padding: 2px 4px;
-	border-radius: 2px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 2px;
 }
 
 .gyazo-hover-overlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: flex-start;
-	align-items: flex-start;
-	opacity: 0;
-	transition: opacity 0.2s ease;
-	pointer-events: none; /* オーバーレイが下のクリックを妨げないようにする */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none; /* オーバーレイが下のクリックを妨げないようにする */
 }
 
 .gyazo-card:hover .gyazo-hover-overlay {
-	opacity: 1;
+  opacity: 1;
 }
 
 .gyazo-copy-button {
-	margin: 5px;
-	width: 24px;
-	height: 24px;
-	background-color: rgba(255, 255, 255, 0.9);
-	border-radius: 4px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	color: #333;
-	cursor: pointer;
-	pointer-events: auto; /* コピーボタンはクリック可能にする */
-	z-index: 2; /* ボタンを確実に最前面に */
+  margin: 5px;
+  width: 24px;
+  height: 24px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #333;
+  cursor: pointer;
+  pointer-events: auto; /* コピーボタンはクリック可能にする */
+  z-index: 2; /* ボタンを確実に最前面に */
 }
 
 .gyazo-copy-button:hover {
-	background-color: white;
+  background-color: white;
 }
 
 .gyazo-loading,
 .gyazo-error,
 .gyazo-empty {
-	padding: 20px;
-	text-align: center;
-	color: var(--text-muted);
+  padding: 20px;
+  text-align: center;
+  color: var(--text-muted);
 }
 
 .gyazo-locked {
-	opacity: 0.7;
+  opacity: 0.7;
 }
 
 /* モーダル関連のスタイルを高いz-indexで設定 */
 .gyazo-pro-modal {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
 .gyazo-pro-modal-content {
-	background-color: var(--background-primary);
-	border-radius: 8px;
-	padding: 20px;
-	width: 80%;
-	max-width: 400px;
-	position: relative;
+  background-color: var(--background-primary);
+  border-radius: 8px;
+  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+  position: relative;
 }
 
 .gyazo-pro-button {
-	display: block;
-	width: 100%;
-	padding: 10px;
-	background-color: #3498db;
-	color: white;
-	border: none;
-	border-radius: 4px;
-	margin-top: 15px;
-	cursor: pointer;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  margin-top: 15px;
+  cursor: pointer;
 }
 
 .gyazo-close-button {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	background: none;
-	border: none;
-	font-size: 16px;
-	cursor: pointer;
-	color: var(--text-muted);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--text-muted);
 }
 
 /* クリック通知用のトースト */
 .gyazo-toast {
-	position: fixed;
-	bottom: 20px;
-	left: 50%;
-	transform: translateX(-50%);
-	background-color: var(--background-secondary);
-	color: var(--text-normal);
-	padding: 8px 16px;
-	border-radius: 4px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-	z-index: 1000;
-	opacity: 0;
-	transition: opacity 0.3s ease;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--background-secondary);
+  color: var(--text-normal);
+  padding: 8px 16px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .gyazo-toast.show {
-	opacity: 1;
+  opacity: 1;
 }
 
 /* Button container for access token guidance */
 .gyazo-button-container {
-	display: flex;
-	flex-direction: column;
-	gap: 12px;
-	margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .gyazo-button-desc {
-	margin: 4px 0 12px 0;
-	font-size: 0.9em;
-	opacity: 0.8;
+  margin: 4px 0 12px 0;
+  font-size: 0.9em;
+  opacity: 0.8;
 }
 
 .gyazo-login-button {
-	margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 /* Detail View Styles */
 .gyazo-detail-view-container {
-	padding: 10px;
-	overflow-y: auto;
-	height: 100%;
+  padding: 10px;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .gyazo-detail-view {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .gyazo-detail-header {
-	margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .gyazo-detail-title {
-	margin: 0;
-	font-size: 1.2em;
+  margin: 0;
+  font-size: 1.2em;
 }
 
 .gyazo-detail-image-container {
-	display: flex;
-	justify-content: center;
-	margin-bottom: 20px;
-	max-height: 400px;
-	overflow: hidden;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  max-height: 400px;
+  overflow: hidden;
 }
 
 .gyazo-detail-image {
-	max-width: 100%;
-	max-height: 400px;
-	object-fit: contain;
-	border-radius: 4px;
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 4px;
 }
 
 .gyazo-image-description {
-	margin: 0 0 20px 0;
-	padding: 0 0 10px 0;
-	font-size: 1.2em;
-	color: var(--text-normal);
-	border-bottom: 1px solid var(--background-modifier-border);
+  margin: 0 0 20px 0;
+  padding: 0 0 10px 0;
+  font-size: 1.2em;
+  color: var(--text-normal);
+  border-bottom: 1px solid var(--background-modifier-border);
 }
 
 .gyazo-source-link {
-	color: var(--text-accent);
-	text-decoration: none;
+  color: var(--text-accent);
+  text-decoration: none;
 }
 
 .gyazo-source-link:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .gyazo-metadata {
-	padding: 15px;
-	background-color: var(--background-secondary);
-	border-radius: 8px;
+  padding: 15px;
+  background-color: var(--background-secondary);
+  border-radius: 8px;
 }
 
 .gyazo-metadata-item {
-	margin-bottom: 10px;
-	padding-bottom: 10px;
-	border-bottom: 1px solid var(--background-modifier-border);
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--background-modifier-border);
 }
 
 .gyazo-metadata-item:last-child {
-	border-bottom: none;
-	margin-bottom: 0;
-	padding-bottom: 0;
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .gyazo-metadata-label {
-	font-weight: bold;
-	color: var(--text-muted);
-	margin-bottom: 4px;
+  font-weight: bold;
+  color: var(--text-muted);
+  margin-bottom: 4px;
 }
 
 .gyazo-metadata-value {
-	word-break: break-word;
-	white-space: break-spaces;
+  word-break: break-word;
+  white-space: break-spaces;
 }
 
 .gyazo-title-desc-container {
-	margin-bottom: 20px;
-	padding: 15px;
-	background-color: var(--background-primary);
-	border-radius: 8px;
-	border: 1px solid var(--background-modifier-border);
+  margin-bottom: 20px;
+  padding: 15px;
+  background-color: var(--background-primary);
+  border-radius: 8px;
+  border: 1px solid var(--background-modifier-border);
 }
 
 .gyazo-image-title {
-	margin: 0 0 10px 0;
-	font-size: 1.1em;
-	color: var(--text-normal);
+  margin: 0 0 10px 0;
+  font-size: 1.1em;
+  color: var(--text-normal);
 }
 
 .gyazo-image-desc {
-	color: var(--text-normal);
-	line-height: 1.5;
+  color: var(--text-normal);
+  line-height: 1.5;
 }
 
 .gyazo-detail-empty {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
-	color: var(--text-muted);
-	font-style: italic;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: var(--text-muted);
+  font-style: italic;
 }
