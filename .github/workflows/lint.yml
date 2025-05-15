@@ -1,4 +1,4 @@
-name: tsc
+name: lint
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  tsc:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,5 +20,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tsc
-        run: npx tsc --noEmit --skipLibCheck
+      - name: Run ESLint
+        run: npm run lint:eslint
+
+      - name: Run Prettier
+        run: npm run lint:prettier
