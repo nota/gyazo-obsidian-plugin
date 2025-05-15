@@ -82,7 +82,7 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 		try {
 			const date = new Date(dateString);
 			return date.toLocaleString();
-		} catch (e) {
+		} catch {
 			return dateString;
 		}
 	};
@@ -125,7 +125,7 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 								e.preventDefault();
 								window.open(
 									`https://gyazo.com/captures?jump=${image.image_id}`,
-									"_blank"
+									"_blank",
 								);
 							}}
 							className="gyazo-source-link"
@@ -159,7 +159,7 @@ const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
 										e.preventDefault();
 										window.open(
 											image.metadata?.url,
-											"_blank"
+											"_blank",
 										);
 									}}
 									className="gyazo-source-link"
