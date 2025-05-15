@@ -47,6 +47,7 @@ const context = await esbuild.context({
     ".json": "json",
   },
   jsx: "automatic",
+  jsxImportSource: "preact",
 });
 
 if (prod) {

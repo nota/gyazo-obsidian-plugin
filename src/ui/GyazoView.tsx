@@ -1,5 +1,5 @@
-import * as React from "react";
-import { createRoot } from "react-dom/client";
+import { render, createRef } from "preact";
+import { useState } from "preact/hooks";
 import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
 import { generateGyazoMarkdown } from "../util/index";
@@ -11,8 +11,8 @@ export const GYAZO_VIEW_TYPE = "gyazo-view";
 
 export class GyazoView extends ItemView {
   private plugin: GyazoPlugin;
-  private reactComponent: React.ReactNode;
-  private root: any;
+  private reactComponent: any;
+  private galleryRef: any = createRef();
   private images: GyazoImage[] = [];
   private loading = true;
   private error: string | null = null;
@@ -37,7 +37,7 @@ export class GyazoView extends ItemView {
     const container = this.contentEl.createDiv({
       cls: "gyazo-react-container",
     });
-    this.root = createRoot(container);
+    this.galleryRef.current = container;
 
     this.loading = true;
     this.renderComponent();
@@ -46,8 +46,8 @@ export class GyazoView extends ItemView {
   }
 
   async onClose(): Promise<void> {
-    if (this.root) {
-      this.root.unmount();
+    if (this.galleryRef.current) {
+      render(null, this.galleryRef.current);
     }
   }
 
@@ -86,7 +86,9 @@ export class GyazoView extends ItemView {
       />
     );
 
-    this.root.render(this.reactComponent);
+    if (this.galleryRef.current) {
+      render(this.reactComponent, this.galleryRef.current);
+    }
   }
 
   private handleImageClick(image: GyazoImage): void {
@@ -149,7 +151,7 @@ export class GyazoView extends ItemView {
     }, 2000);
   }
 
-  private handleContextMenu(event: React.MouseEvent, image: GyazoImage): void {
+  private handleContextMenu(event: MouseEvent, image: GyazoImage): void {
     event.preventDefault();
 
     const menu = new this.plugin.Menu();
@@ -173,7 +175,7 @@ export class GyazoView extends ItemView {
         });
     });
 
-    menu.showAtMouseEvent(event.nativeEvent);
+    menu.showAtMouseEvent(event);
   }
 }
 
@@ -184,11 +186,11 @@ interface GyazoGalleryProps {
   translations: Translations;
   onImageClick: (image: GyazoImage) => void;
   onCopyButtonClick: (image: GyazoImage) => void;
-  onContextMenu: (event: React.MouseEvent, image: GyazoImage) => void;
+  onContextMenu: (event: MouseEvent, image: GyazoImage) => void;
   onRefresh: () => void;
 }
 
-const GyazoGallery: React.FC<GyazoGalleryProps> = ({
+const GyazoGallery = ({
   images,
   loading,
   error,
@@ -197,10 +199,10 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
   onCopyButtonClick,
   onContextMenu,
   onRefresh,
-}) => {
-  const [showProModal, setShowProModal] = React.useState(false);
+}: GyazoGalleryProps) => {
+  const [showProModal, setShowProModal] = useState(false);
   // クリックされた画像IDを管理する状態
-  const [clickedId, setClickedId] = React.useState<string | null>(null);
+  const [clickedId, setClickedId] = useState<string | null>(null);
 
   // クリックフィードバックを処理する関数
   const handleCardClick = (image: GyazoImage) => {
@@ -328,7 +330,7 @@ const GyazoGallery: React.FC<GyazoGalleryProps> = ({
                 role="img"
                 draggable={true}
                 onDragStart={(e) => {
-                  if (!isLocked) {
+                  if (!isLocked && e.dataTransfer) {
                     e.dataTransfer.setData(
                       "text/plain",
                       generateGyazoMarkdown(image, plugin.settings),

@@ -1,5 +1,4 @@
-import * as React from "react";
-import { createRoot } from "react-dom/client";
+import { render, createRef } from "preact";
 import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
 import GyazoPlugin from "../../main";
@@ -9,8 +8,8 @@ export const GYAZO_DETAIL_VIEW_TYPE = "gyazo-detail-view";
 
 export class GyazoDetailView extends ItemView {
   private plugin: GyazoPlugin;
-  private reactComponent: React.ReactNode;
-  private root: any;
+  private reactComponent: any;
+  private contentRef: any = createRef();
   private image: GyazoImage | null = null;
 
   constructor(leaf: WorkspaceLeaf, plugin: GyazoPlugin) {
@@ -33,14 +32,14 @@ export class GyazoDetailView extends ItemView {
     const container = this.contentEl.createDiv({
       cls: "gyazo-detail-react-container",
     });
-    this.root = createRoot(container);
+    this.contentRef.current = container;
 
     this.renderComponent();
   }
 
   async onClose(): Promise<void> {
-    if (this.root) {
-      this.root.unmount();
+    if (this.contentRef.current) {
+      render(null, this.contentRef.current);
     }
   }
 
@@ -57,7 +56,9 @@ export class GyazoDetailView extends ItemView {
       />
     );
 
-    this.root.render(this.reactComponent);
+    if (this.contentRef.current) {
+      render(this.reactComponent, this.contentRef.current);
+    }
   }
 }
 
@@ -66,10 +67,10 @@ interface GyazoDetailComponentProps {
   translations: Translations;
 }
 
-const GyazoDetailComponent: React.FC<GyazoDetailComponentProps> = ({
+const GyazoDetailComponent = ({
   image,
   translations,
-}) => {
+}: GyazoDetailComponentProps) => {
   if (!image) {
     return (
       <div className="gyazo-detail-empty">{translations.selectImageToView}</div>
