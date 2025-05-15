@@ -1,11 +1,11 @@
 {
-	"id": "obsidian-gyazo-plugin",
-	"name": "Gyazo Captures",
-	"version": "1.0.0",
-	"minAppVersion": "0.15.0",
-	"description": "Displays and embeds Gyazo captures in Obsidian.",
-	"author": "Helpfeel Inc.",
-	"authorUrl": "https://corp.helpfeel.com",
-	"fundingUrl": "https://gyazo.com/pricing",
-	"isDesktopOnly": false
+  "id": "obsidian-gyazo-plugin",
+  "name": "Gyazo Captures",
+  "version": "1.0.0",
+  "minAppVersion": "0.15.0",
+  "description": "Display your Gyazo captures and embed them into your notes.",
+  "author": "Helpfeel Inc.",
+  "authorUrl": "https://corp.helpfeel.com",
+  "fundingUrl": "https://gyazo.com/pricing",
+  "isDesktopOnly": false
 }
