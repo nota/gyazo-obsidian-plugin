@@ -1,6 +1,5 @@
 import { render, createRef } from "preact";
 import { useState } from "preact/hooks";
-import type { JSX } from "preact";
 import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
 import { generateGyazoMarkdown } from "../util/index";
@@ -152,10 +151,7 @@ export class GyazoView extends ItemView {
     }, 2000);
   }
 
-  private handleContextMenu(
-    event: JSX.TargetedMouseEvent<HTMLElement>,
-    image: GyazoImage,
-  ): void {
+  private handleContextMenu(event: MouseEvent, image: GyazoImage): void {
     event.preventDefault();
 
     const menu = new this.plugin.Menu();
@@ -190,7 +186,7 @@ interface GyazoGalleryProps {
   translations: Translations;
   onImageClick: (image: GyazoImage) => void;
   onCopyButtonClick: (image: GyazoImage) => void;
-  onContextMenu: (event: any, image: GyazoImage) => void;
+  onContextMenu: (event: MouseEvent, image: GyazoImage) => void;
   onRefresh: () => void;
 }
 
