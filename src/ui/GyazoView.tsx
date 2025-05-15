@@ -1,5 +1,6 @@
 import { render, createRef } from "preact";
 import { useState } from "preact/hooks";
+import type { JSX } from "preact";
 import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
 import { generateGyazoMarkdown } from "../util/index";
@@ -151,7 +152,10 @@ export class GyazoView extends ItemView {
     }, 2000);
   }
 
-  private handleContextMenu(event: React.MouseEvent, image: GyazoImage): void {
+  private handleContextMenu(
+    event: JSX.TargetedMouseEvent<HTMLElement>,
+    image: GyazoImage,
+  ): void {
     event.preventDefault();
 
     const menu = new this.plugin.Menu();
@@ -175,7 +179,7 @@ export class GyazoView extends ItemView {
         });
     });
 
-    menu.showAtMouseEvent(event.nativeEvent);
+    menu.showAtMouseEvent(event);
   }
 }
 
@@ -330,7 +334,7 @@ const GyazoGallery = ({
                 role="img"
                 draggable={true}
                 onDragStart={(e) => {
-                  if (!isLocked) {
+                  if (!isLocked && e.dataTransfer) {
                     e.dataTransfer.setData(
                       "text/plain",
                       generateGyazoMarkdown(image, plugin.settings),
