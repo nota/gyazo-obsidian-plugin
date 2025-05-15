@@ -1,107 +1,98 @@
-# Obsidian Gyazo Plugin
+# Gyazo Captures for Obsidian
 
-![Image from Gyazo](https://t.gyazo.com/teams/nota/c3c3b3f2f0ce08a659a18e89639b5354.png)
+This Obsidian plugin integrates with Gyazo, allowing you to view and embed your Gyazo captures directly in your notes. Gyazo is a screenshot and image sharing service that makes capturing and sharing visual information quickly and easily.
 
-This plugin integrates Gyazo with Obsidian, allowing you to view and embed your Gyazo captures directly in your notes.
+[![Image from Gyazo](https://t.gyazo.com/teams/nota/4ac0c420da3f52e9d87f8c2db6bdbe8b.gif)](https://nota.gyazo.com/4ac0c420da3f52e9d87f8c2db6bdbe8b)
 
 ## Features
 
--   View your Gyazo captures in a dedicated sidebar
--   Embed images and videos in your notes with a single click
--   Drag and drop captures into your notes
--   Copy markdown for images and videos
--   Right-click context menu with additional options
--   Support for both free and Pro Gyazo accounts
--   Internationalization support (English and Japanese)
+- **Sidebar Gallery**: View your Gyazo captures in a dedicated sidebar
+- **Drag & Drop Embedding**: Drag images directly into your notes
+- **Markdown Copying**: Copy markdown for images with hover actions
+- **Context Menu Options**: Right-click on captures for additional actions
+- **Detail View**: View captures with their metadata including OCR
+- **Free & Pro Support**: Works with both free and Pro Gyazo accounts
+  - Free accounts can access the latest 10 captures
+  - Pro accounts can access up to 100
+- **Internationalization**: Full support for English and Japanese interfaces
 
 ## Installation
 
-1. Download the latest release from the Releases section
-2. Extract the zip file in your Obsidian vault's `.obsidian/plugins/` directory
-3. Run `npm ci` to install dependencies
-4. Run `npm run build` to compile the plugin
-5. Enable the plugin in Obsidian settings
+### From Community Plugins (Recommended)
+
+1. Open Obsidian Settings > Community Plugins.
+2. Ensure "Restricted mode" is off.
+3. Click Browse community plugins.
+4. Search for "Gyazo Captures".
+5. Click Install.
+6. Once installed, click Enable.
+
+### Manual Installation
+
+1. Download the latest release files (`main.js`, `manifest.json`, `styles.css`) from the [Releases page](https://github.com/nota/gyazo-obsidian-plugin/releases/latest).
+2. Navigate to your Obsidian vault's plugins folder: `YourVault/.obsidian/plugins/`.
+3. Create a new folder named `gyazo-obsidian-plugin`.
+4. Copy the downloaded `main.js`, `manifest.json`, and `styles.css` files into this new folder.
+5. Reload Obsidian (Ctrl/Cmd+R or close and reopen).
+6. Go to Settings > Community Plugins, find "Gyazo Captures", and enable it.
+
+## Configuration
+
+After installing and enabling the plugin, you need to configure it:
+
+1. Generate API Token:
+   - Visit [Gyazo API](https://gyazo.com/api) and sign in to your Gyazo account.
+   - Create a new application, then generate a new access token.
+   - Copy your access token.
+
+2. Obsidian Settings:
+   - Go to Settings > Gyazo Captures.
+   - Paste your access token in the Access Token field.
+   - Select your preferred language (English or Japanese).
+   - Configure display options like image width and permalink links.
+
+### Security Note
+
+Your Gyazo access token allows access to your Gyazo captures. The token is stored locally in your Obsidian vault and is not shared with any third parties.
 
 ## Usage
 
-### Setup
+### Sidebar Grid View
 
-1. Get your Gyazo API access token from [Gyazo API](https://gyazo.com/api)
-2. Open the plugin settings and enter your access token
-3. Select your preferred language (English or Japanese)
-4. If you have a Gyazo Pro account, enable the Pro option
-
-### Viewing Captures
-
-1. Click Gyazo icon in the left ribbon to open the Gyazo captures view
-2. Your captures will be displayed as a grid of thumbnails in the right sidebar
+1. Click the Gyazo icon in the left ribbon to open the captures view.
+2. Your captures will appear as a grid of thumbnails in the right sidebar.
+3. Hover over captures to see copy options.
+4. Refresh your captures by clicking the refresh button at the top of the sidebar.
 
 ### Embedding Captures
 
--   **Click**: Click on a capture to embed it at the current cursor position
--   **Drag & Drop**: Drag a capture from the sidebar and drop it into your note
--   **Hover & Copy**: Hover over a capture to reveal a copy button that copies the markdown
+- **Drag & Drop**: Drag a capture from the sidebar and drop it into your note.
+- **Copy Markdown**: Hover over a capture and click the copy button to copy its markdown.
 
 ### Context Menu
 
 Right-click on a capture to access additional options:
+- Copy URL
+- Open in Browser
 
--   Copy URL
--   Open in Browser
--   For videos: Copy GIF Markdown or MP4 Markdown
+### Free vs Pro Account Differences
 
-### Free vs Pro
+- Free Gyazo users can access their 10 most recent captures
+- Pro users can access up to 100 captures with full functionality
 
--   Free users can interact with their 10 most recent captures
--   Pro users can access all captures (up to 100)
+## Development
 
-## Releasing new releases
+### Setup
 
--   Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
--   Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
--   Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
--   Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
--   Publish the release.
+1. Clone this repo.
+2. Make sure your NodeJS is at least v22 (`node --version`).
+3. `npm ci` to install dependencies.
+4. `npm run dev` to start compilation in watch mode.
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+### Build
 
-## Adding your plugin to the community plugin list
-
--   Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
--   Publish an initial version.
--   Make sure you have a `README.md` file in the root of your repo.
--   Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
-
-## How to use
-
--   Clone this repo.
--   Make sure your NodeJS is at least v16 (`node --version`).
--   `npm i` or `yarn` to install dependencies.
--   `npm run dev` to start compilation in watch mode.
-
-## Manually installing the plugin
-
--   Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
-
-## Improve code quality with eslint (optional)
-
--   [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code.
--   To use eslint with this project, make sure to install eslint from terminal:
-    -   `npm install -g eslint`
--   To use eslint to analyze this project use this command:
-    -   `eslint main.ts`
-    -   eslint will then create a report with suggestions for code improvement by file and line number.
--   If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-    -   `eslint .\src\`
-
-## Pricing & Plans URL
-
-https://gyazo.com/pricing
-
-## API Documentation
-
-See https://github.com/obsidianmd/obsidian-api
+- `npm run build` - Builds the production version.
+- `npm run lint` - Checks code quality with ESLint.
 
 ## License
 
