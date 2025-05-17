@@ -22,12 +22,6 @@ import {
   GYAZO_DETAIL_VIEW_TYPE,
 } from "./src/ui/GyazoDetailView";
 
-declare global {
-  interface Window {
-    gyazoPlugin: GyazoPlugin;
-  }
-}
-
 export default class GyazoPlugin extends Plugin {
   settings: GyazoPluginSettings;
   api: GyazoApi;
@@ -37,8 +31,6 @@ export default class GyazoPlugin extends Plugin {
     await this.loadSettings();
 
     this.api = new GyazoApi(this.settings.accessToken);
-
-    (window as any).gyazoPlugin = this;
 
     this.Menu = Menu;
 

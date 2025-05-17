@@ -83,6 +83,7 @@ export class GyazoView extends ItemView {
         onCopyButtonClick={this.onCopyButtonClick.bind(this)}
         onContextMenu={this.handleContextMenu.bind(this)}
         onRefresh={this.refreshImages.bind(this)}
+        plugin={this.plugin}
       />
     );
 
@@ -188,6 +189,7 @@ interface GyazoGalleryProps {
   onCopyButtonClick: (image: GyazoImage) => void;
   onContextMenu: (event: MouseEvent, image: GyazoImage) => void;
   onRefresh: () => void;
+  plugin: GyazoPlugin;
 }
 
 const GyazoGallery = ({
@@ -199,6 +201,7 @@ const GyazoGallery = ({
   onCopyButtonClick,
   onContextMenu,
   onRefresh,
+  plugin,
 }: GyazoGalleryProps) => {
   const [showProModal, setShowProModal] = useState(false);
   // クリックされた画像IDを管理する状態
@@ -229,7 +232,6 @@ const GyazoGallery = ({
     return <div className="gyazo-error">{translations.errorLoadingImages}</div>;
   }
 
-  const plugin = (window as any).gyazoPlugin;
   const hasAccessToken =
     plugin && plugin.settings && plugin.settings.accessToken;
 
