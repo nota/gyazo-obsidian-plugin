@@ -1,4 +1,5 @@
 import { render, createRef, RefObject, VNode } from "preact";
+import { useEffect } from "preact/hooks";
 import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
 import GyazoPlugin from "../../main";
@@ -71,6 +72,16 @@ const GyazoDetailComponent = ({
   image,
   translations,
 }: GyazoDetailComponentProps) => {
+  // Add effect to scroll to top when image changes
+  useEffect(() => {
+    if (image) {
+      const container = document.querySelector(".gyazo-detail-view-container");
+      if (container) {
+        container.scrollTo({ top: 0 });
+      }
+    }
+  }, [image]);
+
   if (!image) {
     return (
       <div className="gyazo-detail-empty">{translations.selectImageToView}</div>
