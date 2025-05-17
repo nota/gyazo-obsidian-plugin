@@ -1,5 +1,5 @@
-import axios from "axios";
 import { GyazoImage } from "../types/index";
+import { RequestUrlParam, requestUrl } from "obsidian";
 
 const API_HOST = "https://api.gyazo.com";
 const REDIRECT_URL = "https://gyazo.com/oauth/obsidian/callback";
@@ -19,14 +19,17 @@ export class GyazoApi {
     }
 
     try {
-      const response = await axios.get(`${API_HOST}/api/images`, {
-        params: {
-          access_token: this.accessToken,
-          per_page: limit,
-        },
+      // Construct URL with query parameters
+      const url = new URL(`${API_HOST}/api/images`);
+      url.searchParams.append("access_token", this.accessToken);
+      url.searchParams.append("per_page", limit.toString());
+
+      const response = await requestUrl({
+        url: url.toString(),
+        method: "GET",
       });
 
-      return response.data;
+      return response.json;
     } catch (error) {
       console.error("Error fetching Gyazo images:", error);
       throw error;
@@ -76,23 +79,23 @@ export class GyazoApi {
    */
   async getAccessToken(code: string): Promise<string> {
     try {
-      const response = await axios.post(
-        `${API_HOST}/oauth/token`,
-        {
+      const params: RequestUrlParam = {
+        url: `${API_HOST}/oauth/token`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           client_id: CLIENT_ID,
           client_secret: CLIENT_SECRET,
           redirect_uri: REDIRECT_URL,
           grant_type: "authorization_code",
           code,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
+        }),
+      };
 
-      return response.data.access_token;
+      const response = await requestUrl(params);
+      return response.json.access_token;
     } catch (error) {
       console.error("Error getting access token:", error);
       throw error;
@@ -108,12 +111,16 @@ export class GyazoApi {
     }
 
     try {
-      await axios.get(`${API_HOST}/api/users/me`, {
-        params: {
-          access_token: this.accessToken,
-        },
+      // Construct URL with query parameters
+      const url = new URL(`${API_HOST}/api/users/me`);
+      url.searchParams.append("access_token", this.accessToken);
+
+      const response = await requestUrl({
+        url: url.toString(),
+        method: "GET",
       });
-      return true;
+
+      return response.status === 200;
     } catch (error) {
       console.error("Error validating access token:", error);
       return false;

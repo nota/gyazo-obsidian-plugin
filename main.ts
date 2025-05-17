@@ -6,6 +6,7 @@ import {
   Notice,
   Plugin,
   WorkspaceLeaf,
+  App,
 } from "obsidian";
 import { generateGyazoMarkdown } from "./src/util/index";
 import {
@@ -22,10 +23,12 @@ import {
   GYAZO_DETAIL_VIEW_TYPE,
 } from "./src/ui/GyazoDetailView";
 
-declare global {
-  interface Window {
-    gyazoPlugin: GyazoPlugin;
-  }
+// Extension for Obsidian's App type to include setting property
+interface ObsidianAppWithSettings extends App {
+  setting: {
+    open: () => void;
+    openTabById: (tabId: string) => void;
+  };
 }
 
 export default class GyazoPlugin extends Plugin {
@@ -37,8 +40,6 @@ export default class GyazoPlugin extends Plugin {
     await this.loadSettings();
 
     this.api = new GyazoApi(this.settings.accessToken);
-
-    (window as any).gyazoPlugin = this;
 
     this.Menu = Menu;
 
@@ -122,8 +123,7 @@ export default class GyazoPlugin extends Plugin {
   }
 
   onunload() {
-    this.app.workspace.detachLeavesOfType(GYAZO_VIEW_TYPE);
-    this.app.workspace.detachLeavesOfType(GYAZO_DETAIL_VIEW_TYPE);
+    // Obsidian handles view cleanup automatically
   }
 
   async loadSettings() {
@@ -139,11 +139,12 @@ export default class GyazoPlugin extends Plugin {
   }
 
   openSettings(): void {
-    const settings = (this.app as any)?.setting;
-    if (settings?.open && settings?.openTabById) {
-      settings.open();
+    // Use the typed interface instead of type assertion to any
+    const appWithSettings = this.app as ObsidianAppWithSettings;
+    if (appWithSettings.setting?.open && appWithSettings.setting?.openTabById) {
+      appWithSettings.setting.open();
       setTimeout(() => {
-        settings.openTabById("obsidian-gyazo-plugin");
+        appWithSettings.setting.openTabById("obsidian-gyazo-plugin");
       }, 100);
     } else {
       console.error("Failed to open settings: 'setting' API is unavailable.");

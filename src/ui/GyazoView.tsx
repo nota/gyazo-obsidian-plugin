@@ -1,18 +1,18 @@
-import { render, createRef } from "preact";
+import { render, createRef, RefObject, VNode } from "preact";
 import { useState } from "preact/hooks";
 import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
 import { generateGyazoMarkdown } from "../util/index";
 import GyazoPlugin from "../../main";
 import { ItemView, MenuItem, WorkspaceLeaf } from "obsidian";
-import { GYAZO_DETAIL_VIEW_TYPE } from "./GyazoDetailView";
+import { GYAZO_DETAIL_VIEW_TYPE, GyazoDetailView } from "./GyazoDetailView";
 
 export const GYAZO_VIEW_TYPE = "gyazo-view";
 
 export class GyazoView extends ItemView {
   private plugin: GyazoPlugin;
-  private reactComponent: any;
-  private galleryRef: any = createRef();
+  private reactComponent: VNode;
+  private galleryRef: RefObject<HTMLDivElement> = createRef();
   private images: GyazoImage[] = [];
   private loading = true;
   private error: string | null = null;
@@ -83,6 +83,7 @@ export class GyazoView extends ItemView {
         onCopyButtonClick={this.onCopyButtonClick.bind(this)}
         onContextMenu={this.handleContextMenu.bind(this)}
         onRefresh={this.refreshImages.bind(this)}
+        plugin={this.plugin}
       />
     );
 
@@ -123,7 +124,7 @@ export class GyazoView extends ItemView {
     }
 
     if (detailLeaf.view) {
-      const detailView = detailLeaf.view as any;
+      const detailView = detailLeaf.view as GyazoDetailView;
       if (typeof detailView.setImage === "function") {
         detailView.setImage(image);
       }
@@ -188,6 +189,7 @@ interface GyazoGalleryProps {
   onCopyButtonClick: (image: GyazoImage) => void;
   onContextMenu: (event: MouseEvent, image: GyazoImage) => void;
   onRefresh: () => void;
+  plugin: GyazoPlugin;
 }
 
 const GyazoGallery = ({
@@ -199,6 +201,7 @@ const GyazoGallery = ({
   onCopyButtonClick,
   onContextMenu,
   onRefresh,
+  plugin,
 }: GyazoGalleryProps) => {
   const [showProModal, setShowProModal] = useState(false);
   // クリックされた画像IDを管理する状態
@@ -229,7 +232,6 @@ const GyazoGallery = ({
     return <div className="gyazo-error">{translations.errorLoadingImages}</div>;
   }
 
-  const plugin = (window as any).gyazoPlugin;
   const hasAccessToken =
     plugin && plugin.settings && plugin.settings.accessToken;
 
