@@ -1,4 +1,5 @@
 import { GyazoImage } from "../types/index";
+import { RequestUrlParam, requestUrl } from "obsidian";
 
 const API_HOST = "https://api.gyazo.com";
 const REDIRECT_URL = "https://gyazo.com/oauth/obsidian/callback";
@@ -18,17 +19,17 @@ export class GyazoApi {
     }
 
     try {
+      // Construct URL with query parameters
       const url = new URL(`${API_HOST}/api/images`);
       url.searchParams.append("access_token", this.accessToken);
       url.searchParams.append("per_page", limit.toString());
 
-      const response = await fetch(url.toString());
+      const response = await requestUrl({
+        url: url.toString(),
+        method: "GET",
+      });
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      return await response.json();
+      return response.json;
     } catch (error) {
       console.error("Error fetching Gyazo images:", error);
       throw error;
@@ -78,7 +79,8 @@ export class GyazoApi {
    */
   async getAccessToken(code: string): Promise<string> {
     try {
-      const response = await fetch(`${API_HOST}/oauth/token`, {
+      const params: RequestUrlParam = {
+        url: `${API_HOST}/oauth/token`,
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -90,14 +92,10 @@ export class GyazoApi {
           grant_type: "authorization_code",
           code,
         }),
-      });
+      };
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-
-      const data = await response.json();
-      return data.access_token;
+      const response = await requestUrl(params);
+      return response.json.access_token;
     } catch (error) {
       console.error("Error getting access token:", error);
       throw error;
@@ -113,11 +111,16 @@ export class GyazoApi {
     }
 
     try {
+      // Construct URL with query parameters
       const url = new URL(`${API_HOST}/api/users/me`);
       url.searchParams.append("access_token", this.accessToken);
 
-      const response = await fetch(url.toString());
-      return response.ok;
+      const response = await requestUrl({
+        url: url.toString(),
+        method: "GET",
+      });
+
+      return response.status === 200;
     } catch (error) {
       console.error("Error validating access token:", error);
       return false;
