@@ -1,6 +1,6 @@
 {
   "name": "obsidian-gyazo-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Displays and embeds Gyazo captures in Obsidian",
   "main": "main.js",
   "scripts": {
