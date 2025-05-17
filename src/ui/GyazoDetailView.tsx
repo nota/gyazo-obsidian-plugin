@@ -1,4 +1,4 @@
-import { render, createRef } from "preact";
+import { render, createRef, RefObject, VNode } from "preact";
 import { GyazoImage } from "../types/index";
 import { Translations } from "../i18n/index";
 import GyazoPlugin from "../../main";
@@ -8,8 +8,8 @@ export const GYAZO_DETAIL_VIEW_TYPE = "gyazo-detail-view";
 
 export class GyazoDetailView extends ItemView {
   private plugin: GyazoPlugin;
-  private reactComponent: any;
-  private contentRef: any = createRef();
+  private reactComponent: VNode;
+  private contentRef: RefObject<HTMLDivElement> = createRef();
   private image: GyazoImage | null = null;
 
   constructor(leaf: WorkspaceLeaf, plugin: GyazoPlugin) {
