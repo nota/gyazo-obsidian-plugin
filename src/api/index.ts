@@ -1,4 +1,3 @@
-import axios from "axios";
 import { GyazoImage } from "../types/index";
 
 const API_HOST = "https://api.gyazo.com";
@@ -19,14 +18,17 @@ export class GyazoApi {
     }
 
     try {
-      const response = await axios.get(`${API_HOST}/api/images`, {
-        params: {
-          access_token: this.accessToken,
-          per_page: limit,
-        },
-      });
+      const url = new URL(`${API_HOST}/api/images`);
+      url.searchParams.append("access_token", this.accessToken);
+      url.searchParams.append("per_page", limit.toString());
 
-      return response.data;
+      const response = await fetch(url.toString());
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      return await response.json();
     } catch (error) {
       console.error("Error fetching Gyazo images:", error);
       throw error;
@@ -76,23 +78,26 @@ export class GyazoApi {
    */
   async getAccessToken(code: string): Promise<string> {
     try {
-      const response = await axios.post(
-        `${API_HOST}/oauth/token`,
-        {
+      const response = await fetch(`${API_HOST}/oauth/token`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           client_id: CLIENT_ID,
           client_secret: CLIENT_SECRET,
           redirect_uri: REDIRECT_URL,
           grant_type: "authorization_code",
           code,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        },
-      );
+        }),
+      });
 
-      return response.data.access_token;
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data.access_token;
     } catch (error) {
       console.error("Error getting access token:", error);
       throw error;
@@ -108,12 +113,11 @@ export class GyazoApi {
     }
 
     try {
-      await axios.get(`${API_HOST}/api/users/me`, {
-        params: {
-          access_token: this.accessToken,
-        },
-      });
-      return true;
+      const url = new URL(`${API_HOST}/api/users/me`);
+      url.searchParams.append("access_token", this.accessToken);
+
+      const response = await fetch(url.toString());
+      return response.ok;
     } catch (error) {
       console.error("Error validating access token:", error);
       return false;
