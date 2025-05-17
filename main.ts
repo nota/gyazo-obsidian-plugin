@@ -122,8 +122,7 @@ export default class GyazoPlugin extends Plugin {
   }
 
   onunload() {
-    this.app.workspace.detachLeavesOfType(GYAZO_VIEW_TYPE);
-    this.app.workspace.detachLeavesOfType(GYAZO_DETAIL_VIEW_TYPE);
+    // Obsidian handles view cleanup automatically
   }
 
   async loadSettings() {
