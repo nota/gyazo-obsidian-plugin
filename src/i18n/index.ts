@@ -50,7 +50,7 @@ export interface Translations {
 
 export const translations: Record<"en" | "ja", Translations> = {
   en: {
-    ribbonTooltip: "Gyazo captures",
+    ribbonTooltip: "Gyazo viewer",
     settingsTitle: "Gyazo plugin settings",
     accessTokenLabel: "Access token",
     accessTokenDesc: "Enter your Gyazo API access token",
@@ -85,7 +85,7 @@ export const translations: Record<"en" | "ja", Translations> = {
     errorLoadingImages: "Error loading captures",
     loginRequired: "Gyazo account required",
     loginRequiredDesc:
-      "Please sign up or log in to continue using Gyazo captures",
+      "Please sign up or log in to continue using Gyazo viewer",
     loginButton: "Sign up / log in",
     revokeToken: "Revoke access",
     revokeTokenDesc: "Revoke Gyazo access token",

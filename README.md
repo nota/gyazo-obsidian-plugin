@@ -1,4 +1,4 @@
-# Gyazo Captures for Obsidian
+# Gyazo viewer for Obsidian
 
 This Obsidian plugin integrates with Gyazo, allowing you to view and embed your Gyazo captures directly in your notes. Gyazo is a screenshot and image sharing service that makes capturing and sharing visual information quickly and easily.
 
@@ -23,7 +23,7 @@ This Obsidian plugin integrates with Gyazo, allowing you to view and embed your 
 1. Open Obsidian Settings > Community Plugins.
 2. Ensure "Restricted mode" is off.
 3. Click Browse community plugins.
-4. Search for "Gyazo Captures".
+4. Search for "Gyazo viewer".
 5. Click Install.
 6. Once installed, click Enable.
 
@@ -34,7 +34,7 @@ This Obsidian plugin integrates with Gyazo, allowing you to view and embed your 
 3. Create a new folder named `gyazo-obsidian-plugin`.
 4. Copy the downloaded `main.js`, `manifest.json`, and `styles.css` files into this new folder.
 5. Reload Obsidian (Ctrl/Cmd+R or close and reopen).
-6. Go to Settings > Community Plugins, find "Gyazo Captures", and enable it.
+6. Go to Settings > Community Plugins, find "Gyazo viewer", and enable it.
 
 ## Configuration
 
@@ -46,7 +46,7 @@ After installing and enabling the plugin, you need to configure it:
    - Copy your access token.
 
 2. Obsidian Settings:
-   - Go to Settings > Gyazo Captures.
+   - Go to Settings > Gyazo viewer.
    - Paste your access token in the Access Token field.
    - Select your preferred language (English or Japanese).
    - Configure display options like image width and permalink links.
