@@ -133,9 +133,10 @@ export class GyazoView extends ItemView {
 
   private showToast(message: string): void {
     // トースト要素を作成
-    const toast = document.createElement("div");
-    toast.className = "gyazo-toast";
-    toast.textContent = message;
+    const toast = createDiv({
+      cls: "gyazo-toast",
+      text: message,
+    });
     document.body.appendChild(toast);
 
     // 表示アニメーション
