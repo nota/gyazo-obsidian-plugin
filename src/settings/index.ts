@@ -15,7 +15,6 @@ export class GyazoSettingTab extends PluginSettingTab {
     const t = this.plugin.getTranslation();
 
     containerEl.empty();
-    containerEl.createEl("h2", { text: t.settingsTitle });
 
     const tokenSetting = new Setting(containerEl)
       .setName(t.accessTokenLabel)
