@@ -20,7 +20,7 @@ This Obsidian plugin integrates with Gyazo, allowing you to view and embed your 
 
 ### From Community Plugins (Recommended)
 
-1. Open Obsidian Settings > Community Plugins.
+1. Open Obsidian settings > Community plugins.
 2. Ensure "Restricted mode" is off.
 3. Click Browse community plugins.
 4. Search for "Gyazo Viewer".
@@ -46,7 +46,7 @@ After installing and enabling the plugin, you need to configure it:
    - Copy your access token.
 
 2. Obsidian settings:
-   - Go to Settings > Gyazo Viewer.
+   - Go to settings > Gyazo Viewer.
    - Paste your access token in the Access Token field.
    - Select your preferred language (English or Japanese).
    - Configure display options like image width and permalink links.
