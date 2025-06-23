@@ -1,6 +1,6 @@
 {
   "id": "gyazo",
-  "name": "Gyazo Captures",
+  "name": "Gyazo viewer",
   "version": "1.0.1",
   "minAppVersion": "0.15.0",
   "description": "Display your Gyazo captures and embed them into your notes.",

@@ -1,6 +1,5 @@
 export interface Translations {
   ribbonTooltip: string;
-  settingsTitle: string;
   accessTokenLabel: string;
   accessTokenDesc: string;
   openApiDashboard: string;
@@ -50,26 +49,25 @@ export interface Translations {
 
 export const translations: Record<"en" | "ja", Translations> = {
   en: {
-    ribbonTooltip: "Gyazo Captures",
-    settingsTitle: "Gyazo Plugin Settings",
-    accessTokenLabel: "Access Token",
+    ribbonTooltip: "Gyazo viewer",
+    accessTokenLabel: "Access token",
     accessTokenDesc: "Enter your Gyazo API access token",
-    openApiDashboard: "Open API Dashboard",
+    openApiDashboard: "Open API dashboard",
     openApiDashboardDesc:
       "Open Gyazo API dashboard to create a new application",
     languageLabel: "Language",
     languageDesc: "Select your preferred language",
-    includePermalinkLinksLabel: "Image with Link",
+    includePermalinkLinksLabel: "Image with link",
     includePermalinkLinksDesc: "Add links to Gyazo pages when embedding images",
-    imageWidthLabel: "Image Width",
+    imageWidthLabel: "Image width",
     imageWidthDesc: "Set default width for embedded images",
     save: "Save",
     copyUrl: "Copy URL",
-    openInBrowser: "Open in Browser",
-    copyMarkdown: "Copy Markdown",
-    copyMarkdownGif: "Copy GIF Markdown",
-    copyMarkdownMp4: "Copy MP4 Markdown",
-    detailViewTitle: "Image Details",
+    openInBrowser: "Open in browser",
+    copyMarkdown: "Copy markdown",
+    copyMarkdownGif: "Copy GIF markdown",
+    copyMarkdownMp4: "Copy MP4 markdown",
+    detailViewTitle: "Image details",
     selectImageToView: "Select an image to view details",
     uploadDate: "Uploaded at",
     description: "Description",
@@ -79,21 +77,21 @@ export const translations: Record<"en" | "ja", Translations> = {
     ocr: "OCR",
     upgradeToProTitle: "Upgrade to Gyazo Pro",
     upgradeToProDesc: "Upgrade to Gyazo Pro to access all your captures",
-    upgradeToProButton: "Upgrade Now",
+    upgradeToProButton: "Upgrade now",
     noImages: "No captures found",
     loadingImages: "Loading captures...",
     errorLoadingImages: "Error loading captures",
-    loginRequired: "Gyazo Account Required",
+    loginRequired: "Gyazo account required",
     loginRequiredDesc:
-      "Please sign up or log in to continue using Gyazo captures",
-    loginButton: "Sign up / Log in",
-    revokeToken: "Revoke Access",
+      "Please sign up or log in to continue using Gyazo viewer",
+    loginButton: "Sign up / log in",
+    revokeToken: "Revoke access",
     revokeTokenDesc: "Revoke Gyazo access token",
     tokenRevoked: "Access token has been revoked",
     imageCopiedToEditor: "Image inserted into editor",
     imageCopiedToClipboard: "Image copied to clipboard",
     imageOpenedInBrowser: "Image opened in browser",
-    openSettings: "Open Plugin Settings",
+    openSettings: "Open plugin settings",
     openSettingsDesc:
       "Configure your Gyazo API access token in the plugin settings",
     downloadGyazo: "Download Gyazo",
@@ -103,7 +101,6 @@ export const translations: Record<"en" | "ja", Translations> = {
   },
   ja: {
     ribbonTooltip: "Gyazoキャプチャ",
-    settingsTitle: "Gyazoプラグイン設定",
     accessTokenLabel: "アクセストークン",
     accessTokenDesc: "Gyazo APIのアクセストークンを入力してください",
     openApiDashboard: "APIダッシュボードを開く",

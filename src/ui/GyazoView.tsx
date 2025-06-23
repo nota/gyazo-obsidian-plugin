@@ -108,10 +108,9 @@ export class GyazoView extends ItemView {
   }
 
   private openDetailView(image: GyazoImage): void {
-    const detailLeaves = this.app.workspace.getLeavesOfType(
-      GYAZO_DETAIL_VIEW_TYPE,
-    );
-    let detailLeaf = detailLeaves.length > 0 ? detailLeaves[0] : null;
+    let detailLeaf = this.app.workspace
+      .getLeavesOfType(GYAZO_DETAIL_VIEW_TYPE)
+      .first();
 
     if (!detailLeaf) {
       detailLeaf = this.app.workspace.getLeaf("split", "vertical");
@@ -123,7 +122,7 @@ export class GyazoView extends ItemView {
       this.app.workspace.revealLeaf(detailLeaf);
     }
 
-    if (detailLeaf.view) {
+    if (detailLeaf.view instanceof GyazoDetailView) {
       const detailView = detailLeaf.view as GyazoDetailView;
       if (typeof detailView.setImage === "function") {
         detailView.setImage(image);
@@ -133,20 +132,21 @@ export class GyazoView extends ItemView {
 
   private showToast(message: string): void {
     // トースト要素を作成
-    const toast = document.createElement("div");
-    toast.className = "gyazo-toast";
-    toast.textContent = message;
+    const toast = createDiv({
+      cls: "gyazo-toast",
+      text: message,
+    });
     document.body.appendChild(toast);
 
     // 表示アニメーション
-    setTimeout(() => {
+    window.setTimeout(() => {
       toast.classList.add("show");
     }, 10);
 
     // 一定時間後に消す
-    setTimeout(() => {
+    window.setTimeout(() => {
       toast.classList.remove("show");
-      setTimeout(() => {
+      window.setTimeout(() => {
         document.body.removeChild(toast);
       }, 300);
     }, 2000);
@@ -218,7 +218,7 @@ const GyazoGallery = ({
     setClickedId(image.image_id);
 
     // フィードバックアニメーション後にIDをリセット
-    setTimeout(() => {
+    window.setTimeout(() => {
       setClickedId(null);
       onImageClick(image);
     }, 150);
