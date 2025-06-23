@@ -102,11 +102,8 @@ export default class GyazoPlugin extends Plugin {
     this.registerDomEvent(document, "drop", async (evt: DragEvent) => {
       evt.preventDefault();
 
-      const activeLeaf = this.app.workspace.activeLeaf;
-      if (!activeLeaf) return;
-
-      const view = activeLeaf.view;
-      if (!(view instanceof MarkdownView)) return;
+      const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+      if (!view) return;
 
       const editor = view.editor;
 
@@ -172,11 +169,8 @@ export default class GyazoPlugin extends Plugin {
   }
 
   getActiveEditor(): Editor | null {
-    const activeLeaf = this.app.workspace.activeLeaf;
-    if (!activeLeaf) return null;
-
-    const view = activeLeaf.view;
-    if (!(view instanceof MarkdownView)) return null;
+    const view = this.app.workspace.getActiveViewOfType(MarkdownView);
+    if (!view) return null;
 
     return view.editor;
   }
