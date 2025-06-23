@@ -20,10 +20,10 @@ This Obsidian plugin integrates with Gyazo, allowing you to view and embed your 
 
 ### From Community Plugins (Recommended)
 
-1. Open Obsidian Settings > Community Plugins.
+1. Open Obsidian settings > Community plugins.
 2. Ensure "Restricted mode" is off.
 3. Click Browse community plugins.
-4. Search for "Gyazo viewer".
+4. Search for "Gyazo Viewer".
 5. Click Install.
 6. Once installed, click Enable.
 
@@ -34,7 +34,7 @@ This Obsidian plugin integrates with Gyazo, allowing you to view and embed your 
 3. Create a new folder named `gyazo-obsidian-plugin`.
 4. Copy the downloaded `main.js`, `manifest.json`, and `styles.css` files into this new folder.
 5. Reload Obsidian (Ctrl/Cmd+R or close and reopen).
-6. Go to Settings > Community Plugins, find "Gyazo viewer", and enable it.
+6. Go to settings > Community plugins, find "Gyazo Viewer", and enable it.
 
 ## Configuration
 
@@ -45,8 +45,8 @@ After installing and enabling the plugin, you need to configure it:
    - Create a new application, then generate a new access token.
    - Copy your access token.
 
-2. Obsidian Settings:
-   - Go to Settings > Gyazo viewer.
+2. Obsidian settings:
+   - Go to settings > Gyazo Viewer.
    - Paste your access token in the Access Token field.
    - Select your preferred language (English or Japanese).
    - Configure display options like image width and permalink links.
