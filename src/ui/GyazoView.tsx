@@ -139,14 +139,14 @@ export class GyazoView extends ItemView {
     document.body.appendChild(toast);
 
     // 表示アニメーション
-    setTimeout(() => {
+    window.setTimeout(() => {
       toast.classList.add("show");
     }, 10);
 
     // 一定時間後に消す
-    setTimeout(() => {
+    window.setTimeout(() => {
       toast.classList.remove("show");
-      setTimeout(() => {
+      window.setTimeout(() => {
         document.body.removeChild(toast);
       }, 300);
     }, 2000);
@@ -218,7 +218,7 @@ const GyazoGallery = ({
     setClickedId(image.image_id);
 
     // フィードバックアニメーション後にIDをリセット
-    setTimeout(() => {
+    window.setTimeout(() => {
       setClickedId(null);
       onImageClick(image);
     }, 150);

@@ -143,7 +143,7 @@ export default class GyazoPlugin extends Plugin {
     const appWithSettings = this.app as ObsidianAppWithSettings;
     if (appWithSettings.setting?.open && appWithSettings.setting?.openTabById) {
       appWithSettings.setting.open();
-      setTimeout(() => {
+      window.setTimeout(() => {
         appWithSettings.setting.openTabById("obsidian-gyazo-plugin");
       }, 100);
     } else {
