@@ -83,10 +83,12 @@ export default class GyazoPlugin extends Plugin {
               this.getTranslation().save,
           );
 
-          const leaves = this.app.workspace.getLeavesOfType(GYAZO_VIEW_TYPE);
-          if (leaves.length > 0) {
-            const view = leaves[0].view as GyazoView;
-            await view.onOpen();
+          const leaf = this.app.workspace
+            .getLeavesOfType(GYAZO_VIEW_TYPE)
+            .first();
+
+          if (leaf && leaf.view instanceof GyazoView) {
+            await leaf.view.refreshImages();
           }
         } catch (error) {
           console.error("Error getting access token:", error);

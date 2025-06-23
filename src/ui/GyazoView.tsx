@@ -108,10 +108,9 @@ export class GyazoView extends ItemView {
   }
 
   private openDetailView(image: GyazoImage): void {
-    const detailLeaves = this.app.workspace.getLeavesOfType(
-      GYAZO_DETAIL_VIEW_TYPE,
-    );
-    let detailLeaf = detailLeaves.length > 0 ? detailLeaves[0] : null;
+    let detailLeaf = this.app.workspace
+      .getLeavesOfType(GYAZO_DETAIL_VIEW_TYPE)
+      .first();
 
     if (!detailLeaf) {
       detailLeaf = this.app.workspace.getLeaf("split", "vertical");
@@ -123,7 +122,7 @@ export class GyazoView extends ItemView {
       this.app.workspace.revealLeaf(detailLeaf);
     }
 
-    if (detailLeaf.view) {
+    if (detailLeaf.view instanceof GyazoDetailView) {
       const detailView = detailLeaf.view as GyazoDetailView;
       if (typeof detailView.setImage === "function") {
         detailView.setImage(image);
