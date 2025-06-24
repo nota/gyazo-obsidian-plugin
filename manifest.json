@@ -1,7 +1,7 @@
 {
   "id": "gyazo",
   "name": "Gyazo Viewer",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "minAppVersion": "0.15.0",
   "description": "Display your Gyazo captures and embed them into your notes.",
   "author": "Helpfeel Inc.",
