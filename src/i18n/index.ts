@@ -49,7 +49,7 @@ export interface Translations {
 
 export const translations: Record<"en" | "ja", Translations> = {
   en: {
-    ribbonTooltip: "Gyazo Viewer",
+    ribbonTooltip: "Gyazo viewer",
     accessTokenLabel: "Access token",
     accessTokenDesc: "Enter your Gyazo API access token",
     openApiDashboard: "Open API dashboard",
@@ -100,7 +100,7 @@ export const translations: Record<"en" | "ja", Translations> = {
     refreshButton: "Refresh",
   },
   ja: {
-    ribbonTooltip: "Gyazo Viewer",
+    ribbonTooltip: "Gyazo ビューワ",
     accessTokenLabel: "アクセストークン",
     accessTokenDesc: "Gyazo APIのアクセストークンを入力してください",
     openApiDashboard: "APIダッシュボードを開く",
